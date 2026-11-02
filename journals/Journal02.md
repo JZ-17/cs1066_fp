@@ -1,6 +1,6 @@
 # Journal 02
 
-https://youtu.be/WOS8CW8NGbM
+Prototype demo: https://youtu.be/WOS8CW8NGbM
 
 ## Feedback from Journal 01
 
@@ -26,7 +26,7 @@ This is arguably the most critical task, because if AI cannot produce usable hin
 
 I will also need evaluative metrics for both stages, since the manipulator and the generator can each fail in ways that the other one hides. I also plan to keep each request stateless, since conversation memory does not seem necessary here.
 
-**2. Hardcoded Scripts of Imposter Deck Collections.**
+**2. Hardcoded scripts of Imposter deck collections.**
 
 Before any app exists, I'd like to use AI to create a set of hardcoded, irremovable datasets of default topics that players can play upon installation. Within each respective genre of dataset (e.g., Christmas, Foods), each dataset row will contain a word and five potential hints for that word, where overlapping hints are permitted. I will review the datasets by hand. These datasets will give the deck generator reference examples of the output it should produce.
 
@@ -38,23 +38,23 @@ From here, I will extend the generator script so it takes an existing deck plus 
 
 **4. Game logic and deck storage.**
 
-Beyond this, I need functions for role assignment, turn order, and the format a deck is saved in. This part mainly entails translating the rules of the game into the codebase and writing functions I can call to run a round correctly. Because I know the rules from playing, I can specify this task precisely instead of discovering it through iteration, and I can test all of this fairly quick through personal use and unit/feature tests. The deck format is also what tasks 2, 3, and 5 all read from, so pinning it down early keeps the rest of the project from drifting.
+Beyond this, I need functions for role assignment, turn order, and the format a deck is saved in. This part mainly entails translating the rules of the game into the codebase and writing functions I can call to run a round correctly. Because I know the rules from playing, I can specify this task precisely instead of discovering it through iteration, and I can test all of this fairly quickly through personal use and unit/feature tests. The deck format is also what tasks 2, 3, and 5 all read from, so pinning it down early keeps the rest of the project from drifting.
 
 **5. The iOS app.**
 
-Next, I will build the part that sits furthest outside my experience. I seek to create the SwiftUI screens for the home menu, deck selection, role reveal, and voting, then wire in the scripts from the previous steps. 
+Next, I will build the part that sits furthest outside my experience. I will create the SwiftUI screens for the home menu, deck selection, role reveal, and voting, then wire in the scripts from the previous steps.
 
 During this step, I expect to explore the most. I do not know SwiftUI well enough to write a precise prompt up front. For now, I plan to prompt for one screen at a time and read the generated code closely enough to recognize the actions I asked for before moving on, using AI to iteratively clarify on code.
 
-**6. AppLovin and monetization; Server-Based Data Storage.**
+**6. AppLovin and monetization; server-based data storage.**
 
-Finally, I will monetize the app with AppLovin and attempt to store certain aspects of proprietary data with other resources like Supabase. This is the least specified task on the list, which is part of why it is last. I do not yet know what the AppLovin and Supabase SDKs requires, so I expect to work through it with AI as an exploration rather than a specification, starting with a small test integration before touching the real app.
+Finally, I will monetize the app with AppLovin and attempt to store certain aspects of proprietary data with other resources like Supabase. This is the least specified task on the list, which is part of why it is last. I do not yet know what the AppLovin and Supabase SDKs require, so I expect to work through it with AI as an exploration rather than a specification, starting with a small test integration before touching the real app.
 
 **Order Rationale.**
 
 For this project, I am starting with the hardest and murkiest piece rather than the easiest one. The LLM work is what makes the project unique, and it is also where I expect to need the most time, so I want to learn early whether it actually works.
 
-I also plan to work on tasks 1 and 4 in parallel. The game logic and deck storage need no AI at all, so I can write and test that piece while I am still tuning the generator, and neither one blocks the other. Task 2 comes early as well, since the hardcoded decks are what give the generator its reference examples. I could swap the order between task 1 and 2 and it would be logical either way. Everything after that is ordered by dependency. The iOS app wires together scripts that already work, and monetization only makes sense once there is an app to monetize.
+I also plan to work on tasks 1 and 4 in parallel. The game logic and deck storage need no AI at all, so I can write and test that piece while I am still tuning the generator, and neither one blocks the other. Task 2 comes early as well, since the hardcoded decks are what give the generator its reference examples. I could swap the order between tasks 1 and 2 and it would be logical either way. Everything after that is ordered by dependency. The iOS app wires together scripts that already work, and monetization only makes sense once there is an app to monetize.
 
 Since by then I will understand the rest of the project well enough to wire it up, I plan to do the iOS portion last. As I am attempting UI design for the first time, I hope to read the generated code much more easily once I have already worked through everything else.
 
@@ -63,4 +63,4 @@ Since by then I will understand the rest of the project well enough to wire it u
 
 2. How should I be thinking about scaling if the app gets real usage? If several groups generate decks at the same time, I do not know what breaks first, and I have never scaled an end-to-end application before. Previously, I have only written the backend scripts and worried less about these aspects, since I had teammates who handled that side in a relay-style handoff. My Journal 01 feedback also encouraged me to think about the broader app life cycle early, so this feels like the right time to ask.
 
-3. How should I decide what counts as a query being specific enough? In task 1, the manipulator LLM judges whether a player's request is too vague before passing it to the generator, but I have not defined what passes. Is "sports" too vague? Is "NFL"? That judgment sits upstream of everything else, so a bad call there produces decks that look fine but miss what the group actually wanted. The prompt here has to be quite important.
+3. How should I decide what counts as a query being specific enough? In task 1, the manipulator LLM judges whether a player's request is too vague before passing it to the generator, but I have not defined what passes. Is "sports" too vague? Is "NFL"? That judgment sits upstream of everything else, so a bad call there produces decks that look fine but miss what the group actually wanted. Getting this prompt right seems especially important.
