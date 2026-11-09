@@ -9,7 +9,7 @@
 
 In my last section, with a pretty quick sync-up, my mentor and I discussed what we want to come out of this project, and in particular the order in which I should build it.
 
-We decided that the core game logic and the base decks are a better place to start than the generator, which my decomposition in Journal02.md put first. The new order runs 2, 4, 5, 6 from that decomposition, with the generator and conversational refinement moved to the end. This was primarily because there were many questions and plans of how to approach the generator that needed to be addressed at this point. This lets us start with a more concrete and definitive approach.
+We decided that the core game logic and the base decks are a better place to start than the generator, which my decomposition in Journal02.md put first. The new order runs 2, 4, 5, 6 from that decomposition, with the generator and conversational refinement moved to the end. Meanwhile, hardcoded scripts of Imposter deck collections, game logic and deck storage, the iOS app portion, and Applovin integration come first now. This was primarily because there were many questions and plans of how to approach the generator that needed to be addressed at this point. This lets us start with a more concrete and definitive approach.
 
 We also talked about user personalization and where to store user settings. For this, I plan to use the Google Sign-In API, so that users can save their custom-made card decks through a combination of the Google Sign-In API and a Supabase database. I'm not the greatest in the world with SQL, so AI will definitely be in the mix here.
 
