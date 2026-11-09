@@ -12,7 +12,7 @@ The scope of your project is just right! I like that you've considered what part
 
 Following the one-piece-at-a-time approach from class, I broke the project into tasks that are each small enough for me to check by hand.
 
-**1. A standalone deck generator.**
+**1 (Now 5). A standalone deck generator.**
 
 To start, I want to build a script that takes in a topic from the user and the quantity of words they want within the deck. It returns a set of words with five hints each, which is a clear enough output that I can check it just by reading the result. The script should follow this sequence:
 
@@ -26,27 +26,27 @@ This is arguably the most critical task, because if AI cannot produce usable hin
 
 I will also need evaluative metrics for both stages, since the manipulator and the generator can each fail in ways that the other one hides. I also plan to keep each request stateless, since conversation memory does not seem necessary here.
 
-**2. Hardcoded scripts of Imposter deck collections.**
+**2 (Now 1). Hardcoded scripts of Imposter deck collections.**
 
 Before any app exists, I'd like to use AI to create a set of hardcoded, irremovable datasets of default topics that players can play upon installation. Within each respective genre of dataset (e.g., Christmas, Foods), each dataset row will contain a word and five potential hints for that word, where overlapping hints are permitted. I will review the datasets by hand. These datasets will give the deck generator reference examples of the output it should produce.
 
 I can also use a separate set as a test dataset to verify that the generator behaves correctly.
 
-**3. Conversational refinement.**
+**3 (Now 6). Conversational refinement.**
 
 From here, I will extend the generator script so it takes an existing deck plus an instruction like "only quarterbacks" and returns a revised deck. The script should also let players add more cards to an existing deck, up to 100 total words. This one is iterative by design. My first prompt for deck creation will likely be too vague, and the refinement strategies from class, especially being specific about direction and exclusions, are what I will be tuning here.
 
-**4. Game logic and deck storage.**
+**4 (Now 2). Game logic and deck storage.**
 
 Beyond this, I need functions for role assignment, turn order, and the format a deck is saved in. This part mainly entails translating the rules of the game into the codebase and writing functions I can call to run a round correctly. Because I know the rules from playing, I can specify this task precisely instead of discovering it through iteration, and I can test all of this fairly quickly through personal use and unit/feature tests. The deck format is also what tasks 2, 3, and 5 all read from, so pinning it down early keeps the rest of the project from drifting.
 
-**5. The iOS app.**
+**5 (Now 3). The iOS app.**
 
 Next, I will build the part that sits furthest outside my experience. I will create the SwiftUI screens for the home menu, deck selection, role reveal, and voting, then wire in the scripts from the previous steps.
 
 During this step, I expect to explore the most. I do not know SwiftUI well enough to write a precise prompt up front. For now, I plan to prompt for one screen at a time and read the generated code closely enough to recognize the actions I asked for before moving on, using AI to iteratively clarify on code.
 
-**6. AppLovin and monetization; server-based data storage.**
+**6 (Now 4). AppLovin and monetization; server-based data storage.**
 
 Finally, I will monetize the app with AppLovin and attempt to store certain aspects of proprietary data with other resources like Supabase. This is the least specified task on the list, which is part of why it is last. I do not yet know what the AppLovin and Supabase SDKs require, so I expect to work through it with AI as an exploration rather than a specification, starting with a small test integration before touching the real app.
 

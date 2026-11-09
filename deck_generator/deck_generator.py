@@ -109,10 +109,30 @@ player does not know the word and must bluff using only their hint.
 
 Produce exactly {count} distinct words for: {refined_query}
 
-Give each word exactly {HINTS_PER_WORD} hints. A hint must give the imposter
-enough to bluff, without making the word obvious to the group. Never use the
-word itself or an obvious synonym. Keep each hint under six words. Hints may
-repeat across different words.
+Give each word exactly {HINTS_PER_WORD} hints. A hint is one or two words
+naming something associated with the answer. It is never a description or a
+definition of it.
+
+The most important rule is ambiguity. Someone who hears the hint without
+knowing the answer should be able to think of several different words it could
+point to. A hint that identifies the answer on its own is useless, however
+short it is.
+
+For the word Basketball:
+  good: "double", "squeak", "driveway"
+  bad:  "hoop" and "dribble" (each points only at basketball),
+        "points scored in a hoop" (a description, not a hint)
+
+For the word Dog:
+  good: "john wick", "leash", "backyard"
+  bad:  "barks" (points only at a dog),
+        "man's best friend" (a definition)
+
+For the word Soccer:
+  bad:  "Messi" (points only at soccer, even though it is short)
+
+Never use the word itself or an obvious synonym. Hints may repeat across
+different words, which makes the imposter harder to spot.
 """
     schema = {
         "type": "object",
