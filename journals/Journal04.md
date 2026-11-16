@@ -21,4 +21,5 @@ Alternatively, instead of query manipulation, I believe that we could use evalua
 Beyond that, I created the majority of the game UI in Swift over the weekend. With some testing with friends and while still in a prototype state, it seemed overall successful. Janet also pointed out some redundancies post-section that I have taken into account.
 
 ## Questions to Ask
-Not for this assignment!! I believe that I've found myself on a roll. Next steps for the following week will be Supabase and Google API integration, along with smoother UI. Following that I will integrate AppLovin and then the deck generator.
+
+Not for this assignment!! I believe that I've found myself on a roll. Next steps for the following week will be Supabase and Google API integration, along with a smoother UI. Following that, I will integrate AppLovin and then the deck generator.
