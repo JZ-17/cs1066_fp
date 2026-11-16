@@ -17,6 +17,8 @@ Currently, as a tentative plan for the card generator, I will test different ski
 
 The variables I plan to change are the model itself, how much of the specification lives in the skill.md versus the prompt, and how many words I request per call. What I need to compare is not cost per call but the token cost per usable deck, since a cheaper call that returns revealing hints and has to be regenerated is not actually cheaper. We will use an LLM judge to score whether the hints given for each word are too obvious. I'll provide a scored dataset for the LLM judge to use as reference for harshness in an attempt to ground the LLM judge on scoring.
 
+For this week specifically, I will be focusing on creating the core game logic of Imposter and the base datasets that will come preinstalled into the game.
+
 ## Questions to Ask
 1.  Where should the API key live once the app ships? It cannot go in the iOS binary, since anyone can extract it from the app bundle, so the generator calls presumably need to route through a backend I control. Does Supabase cover that, or do I need something separate?
 2.  While I have made an LLM plan that I am mostly comfortable with, are there any suggestions or improvements that you would make?

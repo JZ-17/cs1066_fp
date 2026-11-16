@@ -1,0 +1,208 @@
+{
+  "source": "/Users/josh/Desktop/106/cs1066_fp/imposter_app/Imposter/RoundFlowView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "%lld of %lld",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 39
+        }
+      },
+      {
+        "comment": "",
+        "key": "Everyone else, look away.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 64
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tap to reveal",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 74
+        }
+      },
+      {
+        "comment": "",
+        "key": "You are the imposter. Blend in.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 104
+        }
+      },
+      {
+        "comment": "",
+        "key": "With you: %@",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 110
+        }
+      },
+      {
+        "comment": "",
+        "key": "YOUR HINT",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 91
+        }
+      },
+      {
+        "comment": "",
+        "key": "THE WORD",
+        "location": {
+          "startingColumn": 62,
+          "startingLine": 91
+        }
+      },
+      {
+        "comment": "",
+        "key": "Hide & Start",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 135
+        }
+      },
+      {
+        "comment": "",
+        "key": "Hide & Pass",
+        "location": {
+          "startingColumn": 59,
+          "startingLine": 135
+        }
+      },
+      {
+        "comment": "",
+        "key": "Turn Order",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 206
+        }
+      },
+      {
+        "comment": "",
+        "key": "Give your clues, then decide together when to vote.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 172
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ starts",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 167
+        }
+      },
+      {
+        "comment": "",
+        "key": "How This Round Works",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 180
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld.",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 186
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 213
+        }
+      },
+      {
+        "comment": "",
+        "key": "STARTS",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 223
+        }
+      },
+      {
+        "comment": "",
+        "key": "Caught one.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 329
+        }
+      },
+      {
+        "comment": "",
+        "key": "was an imposter. They get one guess at the secret word — say it out loud now.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 339
+        }
+      },
+      {
+        "comment": "",
+        "key": "They Missed",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 354
+        }
+      },
+      {
+        "comment": "",
+        "key": "THE GROUP WINS",
+        "location": {
+          "startingColumn": 37,
+          "startingLine": 398
+        }
+      },
+      {
+        "comment": "",
+        "key": "THE IMPOSTERS WIN",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 398
+        }
+      },
+      {
+        "comment": "",
+        "key": "THE WORD WAS",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 410
+        }
+      },
+      {
+        "comment": "",
+        "key": "Imposters",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 425
+        }
+      },
+      {
+        "comment": "",
+        "key": "🕵️",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 430
+        }
+      },
+      {
+        "comment": "",
+        "key": "\"%@\"",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 435
+        }
+      }
+    ]
+  },
+  "version": 1
+}

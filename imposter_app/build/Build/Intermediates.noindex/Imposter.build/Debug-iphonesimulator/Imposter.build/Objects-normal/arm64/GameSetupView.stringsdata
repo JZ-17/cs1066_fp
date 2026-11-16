@@ -1,0 +1,56 @@
+{
+  "source": "/Users/josh/Desktop/106/cs1066_fp/imposter_app/Imposter/GameSetupView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Game Settings",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 11
+        }
+      },
+      {
+        "comment": "",
+        "key": "Imposter Never Goes First",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 79
+        }
+      },
+      {
+        "comment": "",
+        "key": "Imposters Know Each Other",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 99
+        }
+      },
+      {
+        "comment": "",
+        "key": "On, they can cover for each other — so fewer are allowed. Off, they play blind and may accuse a teammate.",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 102
+        }
+      },
+      {
+        "comment": "",
+        "key": "Continue",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 118
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 229
+        }
+      }
+    ]
+  },
+  "version": 1
+}

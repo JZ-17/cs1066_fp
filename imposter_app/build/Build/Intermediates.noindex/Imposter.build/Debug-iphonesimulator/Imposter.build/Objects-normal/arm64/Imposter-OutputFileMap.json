@@ -1,0 +1,129 @@
+{
+  "" : {
+    "diagnostics" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Imposter-primary.dia",
+    "emit-module-dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Imposter-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Imposter-primary-emit-module.dia",
+    "pch" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Imposter-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Imposter-primary.swiftdeps"
+  },
+  "/Users/josh/Desktop/106/cs1066_fp/imposter_app/Imposter/Deck.swift" : {
+    "const-values" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Deck.swiftconstvalues",
+    "dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Deck.d",
+    "diagnostics" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Deck.dia",
+    "index-unit-output-path" : "/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Deck.o",
+    "llvm-bc" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Deck.bc",
+    "object" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Deck.o",
+    "swift-dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Deck.swiftdeps",
+    "swiftmodule" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Deck~partial.swiftmodule"
+  },
+  "/Users/josh/Desktop/106/cs1066_fp/imposter_app/Imposter/GameRound.swift" : {
+    "const-values" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameRound.swiftconstvalues",
+    "dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameRound.d",
+    "diagnostics" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameRound.dia",
+    "index-unit-output-path" : "/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameRound.o",
+    "llvm-bc" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameRound.bc",
+    "object" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameRound.o",
+    "swift-dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameRound.swiftdeps",
+    "swiftmodule" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameRound~partial.swiftmodule"
+  },
+  "/Users/josh/Desktop/106/cs1066_fp/imposter_app/Imposter/GameSettings.swift" : {
+    "const-values" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameSettings.swiftconstvalues",
+    "dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameSettings.d",
+    "diagnostics" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameSettings.dia",
+    "index-unit-output-path" : "/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameSettings.o",
+    "llvm-bc" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameSettings.bc",
+    "object" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameSettings.o",
+    "swift-dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameSettings.swiftdeps",
+    "swiftmodule" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameSettings~partial.swiftmodule"
+  },
+  "/Users/josh/Desktop/106/cs1066_fp/imposter_app/Imposter/GameSetupView.swift" : {
+    "const-values" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameSetupView.swiftconstvalues",
+    "dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameSetupView.d",
+    "diagnostics" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameSetupView.dia",
+    "index-unit-output-path" : "/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameSetupView.o",
+    "llvm-bc" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameSetupView.bc",
+    "object" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameSetupView.o",
+    "swift-dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameSetupView.swiftdeps",
+    "swiftmodule" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GameSetupView~partial.swiftmodule"
+  },
+  "/Users/josh/Desktop/106/cs1066_fp/imposter_app/Imposter/HomeView.swift" : {
+    "const-values" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/HomeView.swiftconstvalues",
+    "dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/HomeView.d",
+    "diagnostics" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/HomeView.dia",
+    "index-unit-output-path" : "/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/HomeView.o",
+    "llvm-bc" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/HomeView.bc",
+    "object" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/HomeView.o",
+    "swift-dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/HomeView.swiftdeps",
+    "swiftmodule" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/HomeView~partial.swiftmodule"
+  },
+  "/Users/josh/Desktop/106/cs1066_fp/imposter_app/Imposter/HowToPlayView.swift" : {
+    "const-values" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/HowToPlayView.swiftconstvalues",
+    "dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/HowToPlayView.d",
+    "diagnostics" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/HowToPlayView.dia",
+    "index-unit-output-path" : "/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/HowToPlayView.o",
+    "llvm-bc" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/HowToPlayView.bc",
+    "object" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/HowToPlayView.o",
+    "swift-dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/HowToPlayView.swiftdeps",
+    "swiftmodule" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/HowToPlayView~partial.swiftmodule"
+  },
+  "/Users/josh/Desktop/106/cs1066_fp/imposter_app/Imposter/ImposterApp.swift" : {
+    "const-values" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/ImposterApp.swiftconstvalues",
+    "dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/ImposterApp.d",
+    "diagnostics" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/ImposterApp.dia",
+    "index-unit-output-path" : "/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/ImposterApp.o",
+    "llvm-bc" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/ImposterApp.bc",
+    "object" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/ImposterApp.o",
+    "swift-dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/ImposterApp.swiftdeps",
+    "swiftmodule" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/ImposterApp~partial.swiftmodule"
+  },
+  "/Users/josh/Desktop/106/cs1066_fp/imposter_app/Imposter/LoadingView.swift" : {
+    "const-values" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/LoadingView.swiftconstvalues",
+    "dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/LoadingView.d",
+    "diagnostics" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/LoadingView.dia",
+    "index-unit-output-path" : "/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/LoadingView.o",
+    "llvm-bc" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/LoadingView.bc",
+    "object" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/LoadingView.o",
+    "swift-dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/LoadingView.swiftdeps",
+    "swiftmodule" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/LoadingView~partial.swiftmodule"
+  },
+  "/Users/josh/Desktop/106/cs1066_fp/imposter_app/Imposter/PlayerNamesView.swift" : {
+    "const-values" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/PlayerNamesView.swiftconstvalues",
+    "dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/PlayerNamesView.d",
+    "diagnostics" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/PlayerNamesView.dia",
+    "index-unit-output-path" : "/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/PlayerNamesView.o",
+    "llvm-bc" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/PlayerNamesView.bc",
+    "object" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/PlayerNamesView.o",
+    "swift-dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/PlayerNamesView.swiftdeps",
+    "swiftmodule" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/PlayerNamesView~partial.swiftmodule"
+  },
+  "/Users/josh/Desktop/106/cs1066_fp/imposter_app/Imposter/RoundFlowView.swift" : {
+    "const-values" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/RoundFlowView.swiftconstvalues",
+    "dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/RoundFlowView.d",
+    "diagnostics" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/RoundFlowView.dia",
+    "index-unit-output-path" : "/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/RoundFlowView.o",
+    "llvm-bc" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/RoundFlowView.bc",
+    "object" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/RoundFlowView.o",
+    "swift-dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/RoundFlowView.swiftdeps",
+    "swiftmodule" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/RoundFlowView~partial.swiftmodule"
+  },
+  "/Users/josh/Desktop/106/cs1066_fp/imposter_app/Imposter/Theme.swift" : {
+    "const-values" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Theme.swiftconstvalues",
+    "dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Theme.d",
+    "diagnostics" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Theme.dia",
+    "index-unit-output-path" : "/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Theme.o",
+    "llvm-bc" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Theme.bc",
+    "object" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Theme.o",
+    "swift-dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Theme.swiftdeps",
+    "swiftmodule" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/Theme~partial.swiftmodule"
+  },
+  "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/josh/Desktop/106/cs1066_fp/imposter_app/build/Build/Intermediates.noindex/Imposter.build/Debug-iphonesimulator/Imposter.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  }
+}

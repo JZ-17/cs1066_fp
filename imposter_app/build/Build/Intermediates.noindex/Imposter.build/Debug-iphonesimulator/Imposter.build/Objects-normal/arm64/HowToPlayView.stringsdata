@@ -1,0 +1,32 @@
+{
+  "source": "/Users/josh/Desktop/106/cs1066_fp/imposter_app/Imposter/HowToPlayView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "How to Play",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 9
+        }
+      },
+      {
+        "comment": "",
+        "key": "Playing with a big group? Add a second imposter in Game Settings. They play blind by default, so they do not know who each other are and may well accuse a teammate. Turn that off and they can cover for each other instead.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 64
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 102
+        }
+      }
+    ]
+  },
+  "version": 1
+}
