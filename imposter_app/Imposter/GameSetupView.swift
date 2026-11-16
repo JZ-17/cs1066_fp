@@ -56,7 +56,7 @@ struct GameSetupView: View {
                             .padding(.vertical, 2)
                         }
                     }
-                    .buttonStyle(.plain)
+                    .pressable(scale: 0.98, dims: true)
 
                     SectionLabel(icon: "gamecontroller.fill", title: "Select Imposters")
 
@@ -308,7 +308,7 @@ struct StepperRow: View {
             }
             .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
             .glow(Theme.orange, radius: 18, strength: 0.8)
-            .animation(.snappy(duration: 0.18), value: isEditing)
+            .animation(Theme.quick, value: isEditing)
             .onChange(of: text) { _, new in
                 // numberPad still admits paste and dictation, so filter here.
                 let digits = String(new.filter(\.isNumber).prefix(3))
@@ -342,7 +342,7 @@ struct StepperRow: View {
                         .strokeBorder(Theme.cream.opacity(enabled ? 0.25 : 0.1), lineWidth: 1.5)
                 )
         }
-        .buttonStyle(.plain)
+        .pressable(scale: 0.9, dims: true)
         .disabled(!enabled)
     }
 }
@@ -410,7 +410,7 @@ struct OptionPanel<Expanded: View>: View {
                     }
                 }
             }
-            .buttonStyle(.plain)
+            .pressable(scale: 0.96)
 
             if selected, !(Expanded.self == EmptyView.self) {
                 expanded
@@ -429,7 +429,7 @@ struct OptionPanel<Expanded: View>: View {
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
         .lift(radius: 14, y: 7)
         .glow(Theme.orange, radius: selected ? 16 : 0, strength: selected ? 0.55 : 0)
-        .animation(.snappy(duration: 0.25), value: selected)
+        .animation(Theme.bouncy, value: selected)
     }
 }
 

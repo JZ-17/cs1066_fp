@@ -6,18 +6,27 @@ struct RoundFlowView: View {
     @Bindable var flow: GameFlow
 
     var body: some View {
-        Group {
+        ZStack {
             switch round.phase {
-            case .reveal: RevealPhase(round: round)
-            case .clues:  CluePhase(round: round)
-            case .result: ResultPhase(
-                round: round,
-                playAgain: { flow.playAgain() },
-                menu: { flow.backToMenu() }
-            )
+            case .reveal:
+                RevealPhase(round: round)
+                    .transition(.phaseAdvance)
+            case .clues:
+                CluePhase(round: round)
+                    .transition(.phaseAdvance)
+            case .result:
+                ResultPhase(
+                    round: round,
+                    playAgain: { flow.playAgain() },
+                    menu: { flow.backToMenu() }
+                )
+                .transition(.phaseAdvance)
             }
         }
-        .animation(.snappy(duration: 0.3), value: round.phase)
+        // A ZStack, not a Group: the outgoing phase has to stay on screen and
+        // slide out while the incoming one slides in. A Group swaps its child
+        // outright and there is nothing left to animate.
+        .animation(Theme.smooth, value: round.phase)
         .background { Theme.backdrop }
         .navigationBarBackButtonHidden(round.phase != .reveal)
         .navigationBarTitleDisplayMode(.inline)
@@ -42,16 +51,23 @@ private struct RevealPhase: View {
                 .font(Theme.label(14))
                 .tracking(3)
                 .foregroundStyle(Theme.cream.opacity(0.5))
+                .contentTransition(.numericText())
 
+            // Keyed on the player so passing the phone slides the next name in
+            // rather than swapping the letters in place.
             Text(round.players[index])
                 .font(Theme.display(40))
                 .foregroundStyle(Theme.sunset)
                 .glow(Theme.orange, radius: 18)
+                .id(index)
+                .transition(.phaseAdvance)
 
-            if shown {
-                revealed
-            } else {
-                hidden
+            ZStack {
+                if shown {
+                    revealed.transition(.softSwap)
+                } else {
+                    hidden.transition(.softSwap)
+                }
             }
 
             Spacer()
@@ -59,6 +75,8 @@ private struct RevealPhase: View {
         .padding(.horizontal, 26)
         .frame(maxWidth: 520)
         .frame(maxWidth: .infinity)
+        .animation(Theme.smooth, value: index)
+        .animation(Theme.bouncy, value: shown)
     }
 
     private var hidden: some View {
@@ -68,7 +86,7 @@ private struct RevealPhase: View {
                 .foregroundStyle(Theme.cream.opacity(0.65))
 
             Button {
-                withAnimation(.snappy) { shown = true }
+                shown = true
             } label: {
                 VStack(spacing: 12) {
                     Image(systemName: "eye.fill")
@@ -83,7 +101,7 @@ private struct RevealPhase: View {
                 .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
                 .glow(Theme.orange, radius: 24, strength: 0.9)
             }
-            .buttonStyle(.plain)
+            .pressable()
         }
     }
 
@@ -147,7 +165,7 @@ private struct RevealPhase: View {
                         .strokeBorder(Theme.cream.opacity(0.3), lineWidth: 1.5)
                 )
             }
-            .buttonStyle(.plain)
+            .pressable(dims: true)
         }
     }
 }
@@ -157,7 +175,6 @@ private struct RevealPhase: View {
 private struct CluePhase: View {
 
     @Bindable var round: GameRound
-    @State private var confirming = false
 
     var body: some View {
         ScrollView {
@@ -244,21 +261,11 @@ private struct CluePhase: View {
                     }
                 }
 
-                PrimaryButton(title: "Reveal the Answer", icon: "eye.fill") {
-                    confirming = true
+                ArmedRevealButton {
+                    round.revealAnswer()
                 }
                 .padding(.top, 6)
                 .padding(.bottom, 40)
-                .confirmationDialog(
-                    "Reveal the word and the imposters?",
-                    isPresented: $confirming,
-                    titleVisibility: .visible
-                ) {
-                    Button("Reveal", role: .destructive) { round.revealAnswer() }
-                    Button("Keep Playing", role: .cancel) { }
-                } message: {
-                    Text("This ends the round for everyone.")
-                }
             }
             .padding(.horizontal, 22)
             .frame(maxWidth: 560)
@@ -277,7 +284,17 @@ private struct ResultPhase: View {
     let playAgain: () -> Void
     let menu: () -> Void
 
+    /// Drives the staggered entrance. This screen is the payoff, so the word
+    /// lands first and the imposters are dealt out after it rather than the
+    /// whole answer appearing at once.
+    @State private var appeared = false
+
     private var imposterNames: [Int] { round.imposters.sorted() }
+
+    /// Fade-and-rise for one element, `step` places it in the running order.
+    private func entrance(_ step: Int) -> some ViewModifier {
+        Entrance(appeared: appeared, delay: Double(step) * 0.09)
+    }
 
     var body: some View {
         ScrollView {
@@ -288,24 +305,30 @@ private struct ResultPhase: View {
                     .font(Theme.label(12))
                     .tracking(4)
                     .foregroundStyle(Theme.cream.opacity(0.5))
+                    .modifier(entrance(0))
 
                 Text(round.card.word)
                     .font(Theme.display(42))
                     .multilineTextAlignment(.center)
                     .foregroundStyle(Theme.sunset)
                     .glow(Theme.orange, radius: 22)
+                    .scaleEffect(appeared ? 1 : 0.86)
+                    .opacity(appeared ? 1 : 0)
+                    .animation(Theme.bouncy.delay(0.08), value: appeared)
 
                 Text(round.category)
                     .font(Theme.label(14))
                     .foregroundStyle(Theme.cream.opacity(0.45))
                     .padding(.bottom, 4)
+                    .modifier(entrance(2))
 
                 VStack(alignment: .leading, spacing: 10) {
                     Text(imposterNames.count == 1 ? "The Imposter" : "The Imposters")
                         .font(Theme.label(14))
                         .foregroundStyle(Theme.cream.opacity(0.55))
+                        .modifier(entrance(3))
 
-                    ForEach(imposterNames, id: \.self) { index in
+                    ForEach(Array(imposterNames.enumerated()), id: \.element) { slot, index in
                         HStack(spacing: 10) {
                             Text("\u{1F575}\u{FE0F}")
                             Text(round.players[index])
@@ -328,6 +351,7 @@ private struct ResultPhase: View {
                                 .strokeBorder(Theme.orange.opacity(0.55), lineWidth: 1)
                         )
                         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                        .modifier(entrance(4 + slot))
                     }
 
                     if round.players.count > imposterNames.count {
@@ -341,6 +365,7 @@ private struct ResultPhase: View {
                 .padding(.bottom, 4)
 
                 PrimaryButton(title: "Play Again", icon: "arrow.clockwise", action: playAgain)
+                    .modifier(entrance(5 + imposterNames.count))
 
                 Button(action: menu) {
                     Label("Back to Menu", systemImage: "house.fill")
@@ -349,13 +374,28 @@ private struct ResultPhase: View {
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 15)
                 }
-                .buttonStyle(.plain)
+                .pressable(scale: 0.95, dims: true)
                 .padding(.bottom, 40)
             }
             .padding(.horizontal, 22)
             .frame(maxWidth: 520)
             .frame(maxWidth: .infinity)
         }
+        .onAppear { appeared = true }
+    }
+}
+
+/// Fade up from slightly below, after a delay. Used to deal the reveal screen
+/// out one element at a time.
+private struct Entrance: ViewModifier {
+    let appeared: Bool
+    let delay: Double
+
+    func body(content: Content) -> some View {
+        content
+            .opacity(appeared ? 1 : 0)
+            .offset(y: appeared ? 0 : 14)
+            .animation(Theme.smooth.delay(delay), value: appeared)
     }
 }
 
@@ -396,6 +436,99 @@ private struct PrimaryButton: View {
                 .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                 .glow(Theme.orange, radius: 20, strength: 0.85)
         }
-        .buttonStyle(.plain)
+        .pressable()
+    }
+}
+
+// MARK: - Reveal, behind a second tap
+
+/// Ending the round is destructive and irreversible, so it takes two taps.
+/// The first arms the button: it turns red, relabels, and drains a bar across
+/// itself. A second tap inside that window reveals; otherwise it disarms
+/// itself and goes back to normal, so an accidental tap costs nothing.
+///
+/// This replaces a `.confirmationDialog`, which threw a system action sheet
+/// over the board and broke the feel of the table.
+private struct ArmedRevealButton: View {
+
+    let action: () -> Void
+
+    /// How long the armed state lasts before it gives up.
+    private let window: Double = 3
+
+    @State private var armed = false
+    @State private var drain: CGFloat = 1
+    @State private var disarmTask: Task<Void, Never>?
+
+    var body: some View {
+        Button {
+            if armed {
+                fire()
+            } else {
+                arm()
+            }
+        } label: {
+            Label(
+                armed ? "Tap Again to Reveal" : "Reveal the Answer",
+                systemImage: armed ? "exclamationmark.triangle.fill" : "eye.fill"
+            )
+            .font(Theme.label(18))
+            .foregroundStyle(armed ? Theme.cream : Theme.inkDeep)
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 18)
+            .background {
+                ZStack(alignment: .leading) {
+                    Theme.sunset
+                    Theme.crimson.opacity(armed ? 1 : 0)
+
+                    // The time left, draining left to right behind the label.
+                    GeometryReader { geo in
+                        Rectangle()
+                            .fill(Theme.cream.opacity(0.18))
+                            .frame(width: geo.size.width * drain)
+                    }
+                    .opacity(armed ? 1 : 0)
+                }
+            }
+            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .strokeBorder(Theme.cream.opacity(armed ? 0.5 : 0), lineWidth: 1.5)
+            )
+            .glow(armed ? Theme.crimson : Theme.orange, radius: 20, strength: 0.85)
+        }
+        .pressable()
+        .sensoryFeedback(.warning, trigger: armed) { _, now in now }
+        .accessibilityLabel(armed ? "Tap again to reveal the answer" : "Reveal the answer")
+        .accessibilityHint("Takes two taps. Ends the round for everyone.")
+        .onDisappear { disarmTask?.cancel() }
+    }
+
+    private func arm() {
+        disarmTask?.cancel()
+        drain = 1
+        withAnimation(Theme.quick) { armed = true }
+        withAnimation(.linear(duration: window)) { drain = 0 }
+
+        disarmTask = Task { @MainActor in
+            try? await Task.sleep(for: .seconds(window))
+            guard !Task.isCancelled else { return }
+            withAnimation(Theme.smooth) { armed = false }
+            drain = 1
+        }
+    }
+
+    private func fire() {
+        reset()
+        action()
+    }
+
+    /// Clears the armed state without animating, so the button is already back
+    /// to normal if the view comes around again.
+    private func reset() {
+        disarmTask?.cancel()
+        disarmTask = nil
+        armed = false
+        drain = 1
     }
 }

@@ -100,6 +100,73 @@ extension View {
     }
 }
 
+// MARK: - Motion
+
+/// One place for timing, so every screen moves at the same speed. Hand-rolled
+/// durations drifted apart as views were added and the app felt uneven.
+extension Theme {
+
+    /// Small state flips: a toggle, a focus ring, a colour change.
+    static let quick: Animation = .snappy(duration: 0.22)
+
+    /// Content appearing or rearranging. Slightly soft so height changes do
+    /// not snap.
+    static let smooth: Animation = .smooth(duration: 0.34)
+
+    /// Anything that should feel physical: a card landing, a payoff reveal.
+    static let bouncy: Animation = .spring(response: 0.46, dampingFraction: 0.76)
+
+    /// Long, calm fades between whole screens.
+    static let gentle: Animation = .easeInOut(duration: 0.45)
+}
+
+// MARK: - Press feedback
+
+/// Shrinks a control slightly while it is held.
+///
+/// Every tappable thing in the app uses this instead of `.buttonStyle(.plain)`.
+/// `.plain` strips the system's own press feedback and puts nothing back, so
+/// taps used to land with no acknowledgement at all.
+struct PressableCard: ButtonStyle {
+
+    /// Cards take a gentler squeeze than full-width buttons.
+    var scale: CGFloat = 0.975
+    var dims: Bool = false
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? scale : 1)
+            .opacity(configuration.isPressed && dims ? 0.85 : 1)
+            .animation(.spring(response: 0.3, dampingFraction: 0.7), value: configuration.isPressed)
+    }
+}
+
+extension View {
+    /// Shorthand for the standard press feedback on a button.
+    func pressable(scale: CGFloat = 0.97, dims: Bool = false) -> some View {
+        buttonStyle(PressableCard(scale: scale, dims: dims))
+    }
+}
+
+// MARK: - Entrances
+
+extension AnyTransition {
+
+    /// How one round phase gives way to the next. The round only ever moves
+    /// forward, so the outgoing screen leaves to the left.
+    static var phaseAdvance: AnyTransition {
+        .asymmetric(
+            insertion: .move(edge: .trailing).combined(with: .opacity),
+            removal: .move(edge: .leading).combined(with: .opacity)
+        )
+    }
+
+    /// For content swapping in place, where sliding would be too much.
+    static var softSwap: AnyTransition {
+        .scale(scale: 0.94).combined(with: .opacity)
+    }
+}
+
 // MARK: - Navigation clearance
 
 extension View {

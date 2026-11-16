@@ -33,11 +33,12 @@ struct PlayerNamesView: View {
                                 ),
                                 focus: $focused,
                                 canRemove: settings.playerCount > GameSettings.playerRange.lowerBound,
-                                remove: { withAnimation(.snappy) { settings.removePlayer(at: index) } },
+                                remove: { withAnimation(Theme.bouncy) { settings.removePlayer(at: index) } },
                                 submit: {
                                     focused = index + 1 < settings.playerCount ? index + 1 : nil
                                 }
                             )
+                            .transition(.softSwap)
                         }
                     }
                     .padding(.horizontal, 22)
@@ -70,7 +71,7 @@ struct PlayerNamesView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                         .glow(Theme.orange, radius: 20, strength: settings.canStart ? 0.85 : 0)
                 }
-                .buttonStyle(.plain)
+                .pressable()
                 .disabled(!settings.canStart)
                 .padding(.horizontal, 22)
                 .padding(.bottom, 14)
@@ -104,6 +105,8 @@ struct PlayerNamesView: View {
             Text("\(settings.playerCount) Players")
                 .font(Theme.label(20))
                 .foregroundStyle(Theme.cream)
+                .contentTransition(.numericText())
+                .animation(Theme.quick, value: settings.playerCount)
 
             Spacer()
 
@@ -125,20 +128,20 @@ struct PlayerNamesView: View {
     private var actionBar: some View {
         HStack(spacing: 14) {
             Button {
-                withAnimation(.snappy) { settings.removePlayer() }
+                withAnimation(Theme.bouncy) { settings.removePlayer() }
             } label: {
                 barLabel("person.badge.minus", "Remove", tint: Theme.crimson)
             }
-            .buttonStyle(.plain)
+            .pressable(scale: 0.95, dims: true)
             .disabled(settings.playerCount <= GameSettings.playerRange.lowerBound)
             .opacity(settings.playerCount <= GameSettings.playerRange.lowerBound ? 0.4 : 1)
 
             Button {
-                withAnimation(.snappy) { settings.addPlayer() }
+                withAnimation(Theme.bouncy) { settings.addPlayer() }
             } label: {
                 barLabel("person.badge.plus", "Add", tint: Theme.orange)
             }
-            .buttonStyle(.plain)
+            .pressable(scale: 0.95, dims: true)
             .disabled(settings.playerCount >= GameSettings.playerRange.upperBound)
             .opacity(settings.playerCount >= GameSettings.playerRange.upperBound ? 0.4 : 1)
         }
@@ -210,7 +213,7 @@ struct PlayerRow: View {
                         )
                 )
                 .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                .animation(.snappy(duration: 0.18), value: isEditing)
+                .animation(Theme.quick, value: isEditing)
 
             Button(action: remove) {
                 Image(systemName: "xmark")
@@ -218,7 +221,7 @@ struct PlayerRow: View {
                     .foregroundStyle(canRemove ? Theme.cream.opacity(0.6) : Theme.cream.opacity(0.2))
                     .frame(width: 34, height: 34)
             }
-            .buttonStyle(.plain)
+            .pressable(scale: 0.85, dims: true)
             .disabled(!canRemove)
         }
         .padding(.horizontal, 16)

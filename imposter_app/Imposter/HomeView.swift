@@ -173,15 +173,6 @@ struct MenuCardFace: View {
     }
 }
 
-/// Shrinks a card slightly while it is held.
-struct PressableCard: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .scaleEffect(configuration.isPressed ? 0.975 : 1)
-            .animation(.spring(response: 0.3, dampingFraction: 0.7), value: configuration.isPressed)
-    }
-}
-
 #Preview {
     HomeView().preferredColorScheme(.dark)
 }

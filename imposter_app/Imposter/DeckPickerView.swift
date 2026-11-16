@@ -30,21 +30,21 @@ struct DeckPickerView: View {
                         icon: "checkmark.circle.fill",
                         enabled: !allSelected
                     ) {
-                        withAnimation(.snappy) { settings.selectAllDecks() }
+                        withAnimation(Theme.bouncy) { settings.selectAllDecks() }
                     }
                     BulkButton(
                         title: "Deselect All",
                         icon: "xmark.circle",
                         enabled: settings.canStart
                     ) {
-                        withAnimation(.snappy) { settings.deselectAllDecks() }
+                        withAnimation(Theme.bouncy) { settings.deselectAllDecks() }
                     }
                 }
                 .padding(.bottom, 4)
 
                 ForEach(Decks.all) { deck in
                     DeckRow(deck: deck, selected: settings.isSelected(deck)) {
-                        withAnimation(.snappy) { settings.toggle(deck) }
+                        withAnimation(Theme.bouncy) { settings.toggle(deck) }
                     }
                 }
 
@@ -128,6 +128,8 @@ private struct DeckRow: View {
                 Image(systemName: selected ? "checkmark.circle.fill" : "circle")
                     .font(.system(size: 23, weight: .semibold))
                     .foregroundStyle(selected ? Theme.ember : Theme.cream.opacity(0.3))
+                    .contentTransition(.symbolEffect(.replace))
+                    .scaleEffect(selected ? 1.08 : 1)
             }
             .padding(14)
             .background(selected ? Theme.ink.opacity(0.75) : Theme.ink.opacity(0.35))
@@ -140,8 +142,9 @@ private struct DeckRow: View {
             )
             .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
             .lift(radius: selected ? 16 : 8, y: selected ? 8 : 4)
+            .animation(Theme.bouncy, value: selected)
         }
-        .buttonStyle(.plain)
+        .pressable(scale: 0.98)
     }
 }
 
@@ -175,7 +178,7 @@ private struct BulkButton: View {
             )
             .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
         }
-        .buttonStyle(.plain)
+        .pressable(scale: 0.95, dims: true)
         .disabled(!enabled)
     }
 }
