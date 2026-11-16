@@ -1,36 +1,39 @@
 import SwiftUI
 
-/// Visual language for the app: International Orange (the colour the Golden
-/// Gate Bridge is actually painted) over a deep fog-purple dusk, with warm
-/// glows and heavy soft shadows.
+/// Visual language: a dim ship interior adrift in deep space. Cold navy
+/// plating, a cyan visor glow for anything friendly, and crew red reserved
+/// for the imposter and for actions you cannot take back.
+///
+/// The art here is all drawn from primitives in code. No sprites are copied
+/// from any existing game.
 enum Theme {
 
     // MARK: Palette
 
-    static let inkDeep = Color(hex: 0x140A1E)   // near-black plum
-    static let ink = Color(hex: 0x2A1030)       // dusk purple
-    static let fog = Color(hex: 0x5B2A52)       // muted violet haze
-    static let crimson = Color(hex: 0xA32330)   // deep bridge red
-    static let orange = Color(hex: 0xE04A1F)    // International Orange
-    static let ember = Color(hex: 0xFF7A3D)     // lit edge
-    static let amber = Color(hex: 0xFFB347)     // sun highlight
-    static let cream = Color(hex: 0xFFF3E4)     // warm white text
+    static let deepSpace = Color(hex: 0x070B18)   // the black between stars
+    static let hull = Color(hex: 0x121A33)        // plating in shadow
+    static let steel = Color(hex: 0x25375F)       // plating under a lamp
+    static let alert = Color(hex: 0xC51111)       // danger, imposters, undo-nothing
+    static let beacon = Color(hex: 0x1FC8E3)      // primary accent
+    static let signal = Color(hex: 0x6FF6E2)      // the lit edge of the accent
+    static let warning = Color(hex: 0xF5D547)     // caution stripe yellow
+    static let starlight = Color(hex: 0xE9F1FF)   // cold white text
 
     // MARK: Gradients
 
-    /// Full-screen dusk: deep plum at the top falling to a burning horizon.
-    static var dusk: LinearGradient {
+    /// Full-screen void: black overhead falling to the glow of a distant sun.
+    static var space: LinearGradient {
         LinearGradient(
-            colors: [inkDeep, ink, fog.opacity(0.85), crimson.opacity(0.75)],
+            colors: [deepSpace, hull, steel.opacity(0.75), Color(hex: 0x1C2E63).opacity(0.65)],
             startPoint: .top,
             endPoint: .bottom
         )
     }
 
-    /// The warm sweep used on titles and primary buttons.
-    static var sunset: LinearGradient {
+    /// The sweep used on titles and primary buttons. A lit visor.
+    static var visor: LinearGradient {
         LinearGradient(
-            colors: [amber, ember, orange, crimson],
+            colors: [signal, beacon, Color(hex: 0x2E7BF0), Color(hex: 0x3B43C8)],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
@@ -48,22 +51,23 @@ enum Theme {
 
     // MARK: Backdrop
 
-    /// Dusk gradient with the horizon glow burning at the bottom.
+    /// Star field over the void, with a planet's limb glowing at the bottom.
     ///
     /// Always attach this with `.background { Theme.backdrop }` rather than as
     /// a ZStack layer. The glow circle is far wider than a phone screen, and a
-    /// ZStack sizes itself to its largest child — which silently stretches the
-    /// whole layout. A background never contributes to its parent's size.
+    /// ZStack sizes itself to its largest child. That silently stretches the
+    /// whole layout. A background never adds to its parent's size.
     static var backdrop: some View {
         ZStack {
-            Theme.dusk
+            Theme.space
+            Starfield()
             VStack {
                 Spacer()
                 Circle()
-                    .fill(Theme.bloom(Theme.orange, opacity: 0.45))
+                    .fill(Theme.bloom(Theme.beacon, opacity: 0.38))
                     .frame(width: 640, height: 640)
                     .blur(radius: 30)
-                    .offset(y: 240)
+                    .offset(y: 250)
             }
         }
         .ignoresSafeArea()
@@ -85,7 +89,7 @@ enum Theme {
 extension View {
     /// Layered glow: a tight bright core plus a wide soft halo. Two shadows
     /// read far better than one big blurry one.
-    func glow(_ color: Color = Theme.orange, radius: CGFloat = 18, strength: Double = 1) -> some View {
+    func glow(_ color: Color = Theme.beacon, radius: CGFloat = 18, strength: Double = 1) -> some View {
         self
             .shadow(color: color.opacity(0.55 * strength), radius: radius * 0.45, y: 0)
             .shadow(color: color.opacity(0.35 * strength), radius: radius, y: radius * 0.3)
@@ -95,8 +99,8 @@ extension View {
     /// Depth shadow for raised surfaces, warm rather than neutral grey.
     func lift(radius: CGFloat = 20, y: CGFloat = 12) -> some View {
         self
-            .shadow(color: Theme.inkDeep.opacity(0.55), radius: radius, y: y)
-            .shadow(color: Theme.crimson.opacity(0.25), radius: radius * 1.6, y: y * 1.4)
+            .shadow(color: Theme.deepSpace.opacity(0.55), radius: radius, y: y)
+            .shadow(color: Theme.alert.opacity(0.25), radius: radius * 1.6, y: y * 1.4)
     }
 }
 

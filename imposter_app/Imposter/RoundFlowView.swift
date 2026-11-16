@@ -17,8 +17,8 @@ struct RoundFlowView: View {
             case .result:
                 ResultPhase(
                     round: round,
-                    playAgain: { flow.playAgain() },
-                    menu: { flow.backToMenu() }
+                    playAgain: { flow.exitRound(.settings) },
+                    menu: { flow.exitRound(.menu) }
                 )
                 .transition(.phaseAdvance)
             }
@@ -50,15 +50,15 @@ private struct RevealPhase: View {
             Text("\(index + 1) of \(round.players.count)")
                 .font(Theme.label(14))
                 .tracking(3)
-                .foregroundStyle(Theme.cream.opacity(0.5))
+                .foregroundStyle(Theme.starlight.opacity(0.5))
                 .contentTransition(.numericText())
 
             // Keyed on the player so passing the phone slides the next name in
             // rather than swapping the letters in place.
             Text(round.players[index])
                 .font(Theme.display(40))
-                .foregroundStyle(Theme.sunset)
-                .glow(Theme.orange, radius: 18)
+                .foregroundStyle(Theme.visor)
+                .glow(Theme.beacon, radius: 18)
                 .id(index)
                 .transition(.phaseAdvance)
 
@@ -83,7 +83,7 @@ private struct RevealPhase: View {
         VStack(spacing: 18) {
             Text("Everyone else, look away.")
                 .font(Theme.label(16))
-                .foregroundStyle(Theme.cream.opacity(0.65))
+                .foregroundStyle(Theme.starlight.opacity(0.65))
 
             Button {
                 shown = true
@@ -94,12 +94,12 @@ private struct RevealPhase: View {
                     Text("Tap to reveal")
                         .font(Theme.label(19))
                 }
-                .foregroundStyle(Theme.inkDeep)
+                .foregroundStyle(Theme.deepSpace)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 44)
-                .background(Theme.sunset)
+                .background(Theme.visor)
                 .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
-                .glow(Theme.orange, radius: 24, strength: 0.9)
+                .glow(Theme.beacon, radius: 24, strength: 0.9)
             }
             .pressable()
         }
@@ -112,36 +112,36 @@ private struct RevealPhase: View {
                     .font(Theme.label(13))
                     .tracking(4)
                     .foregroundStyle(
-                        round.isImposter(index) ? Theme.ember : Theme.cream.opacity(0.55)
+                        round.isImposter(index) ? Theme.signal : Theme.starlight.opacity(0.55)
                     )
 
                 Text(round.secret(for: index))
                     .font(Theme.display(38))
                     .multilineTextAlignment(.center)
-                    .foregroundStyle(Theme.cream)
+                    .foregroundStyle(Theme.starlight)
 
                 if round.isImposter(index) {
                     Text(round.imposterNote(for: index))
                         .font(Theme.label(15))
                         .multilineTextAlignment(.center)
-                        .foregroundStyle(Theme.ember)
+                        .foregroundStyle(Theme.signal)
 
                     let mates = round.teammates(of: index)
                     if !mates.isEmpty {
                         Text("With you: \(mates.joined(separator: ", "))")
                             .font(.system(size: 14, weight: .medium, design: .rounded))
-                            .foregroundStyle(Theme.amber.opacity(0.9))
+                            .foregroundStyle(Theme.warning.opacity(0.9))
                     }
                 }
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 38)
             .padding(.horizontal, 20)
-            .background(round.isImposter(index) ? Theme.crimson.opacity(0.22) : Theme.ink.opacity(0.6))
+            .background(round.isImposter(index) ? Theme.alert.opacity(0.22) : Theme.hull.opacity(0.6))
             .overlay(
                 RoundedRectangle(cornerRadius: 26, style: .continuous)
                     .strokeBorder(
-                        round.isImposter(index) ? Theme.orange.opacity(0.8) : Theme.cream.opacity(0.15),
+                        round.isImposter(index) ? Theme.alert.opacity(0.95) : Theme.starlight.opacity(0.15),
                         lineWidth: round.isImposter(index) ? 1.8 : 1
                     )
             )
@@ -157,13 +157,14 @@ private struct RevealPhase: View {
                     systemImage: "arrow.right"
                 )
                 .font(Theme.label(18))
-                .foregroundStyle(Theme.cream)
+                .foregroundStyle(Theme.starlight)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 17)
                 .overlay(
                     RoundedRectangle(cornerRadius: 18, style: .continuous)
-                        .strokeBorder(Theme.cream.opacity(0.3), lineWidth: 1.5)
+                        .strokeBorder(Theme.starlight.opacity(0.3), lineWidth: 1.5)
                 )
+                .contentShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
             }
             .pressable(dims: true)
         }
@@ -184,15 +185,15 @@ private struct CluePhase: View {
                     HStack(spacing: 10) {
                         Image(systemName: "play.fill")
                             .font(.system(size: 16, weight: .bold))
-                            .foregroundStyle(Theme.ember)
+                            .foregroundStyle(Theme.signal)
                         Text("\(round.leadPlayer) starts")
                             .font(Theme.display(30))
-                            .foregroundStyle(Theme.sunset)
-                            .glow(Theme.orange, radius: 14)
+                            .foregroundStyle(Theme.visor)
+                            .glow(Theme.beacon, radius: 14)
                     }
-                    Text("Give your clues, talk it out, and vote out loud. Reveal when you have decided.")
+                    Text("Give your clues. Talk it out. Vote out loud. Tap reveal once you have decided.")
                         .font(.system(size: 15, weight: .medium, design: .rounded))
-                        .foregroundStyle(Theme.cream.opacity(0.65))
+                        .foregroundStyle(Theme.starlight.opacity(0.65))
                 }
                 .belowNavigationBar()
 
@@ -200,60 +201,60 @@ private struct CluePhase: View {
                 VStack(alignment: .leading, spacing: 14) {
                     Text("How This Round Works")
                         .font(Theme.label(15))
-                        .foregroundStyle(Theme.cream.opacity(0.8))
+                        .foregroundStyle(Theme.starlight.opacity(0.8))
 
                     ForEach(Array(round.briefing.enumerated()), id: \.offset) { position, line in
                         HStack(alignment: .top, spacing: 11) {
                             Text("\(position + 1).")
                                 .font(Theme.label(14))
-                                .foregroundStyle(Theme.ember)
+                                .foregroundStyle(Theme.signal)
                                 .frame(width: 20, alignment: .leading)
                             Text(line)
                                 .font(.system(size: 14.5, weight: .medium, design: .rounded))
-                                .foregroundStyle(Theme.cream.opacity(0.75))
+                                .foregroundStyle(Theme.starlight.opacity(0.75))
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                     }
                 }
                 .padding(16)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .background(Theme.ink.opacity(0.5))
+                .background(Theme.hull.opacity(0.5))
                 .overlay(
                     RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .strokeBorder(Theme.cream.opacity(0.12), lineWidth: 1)
+                        .strokeBorder(Theme.starlight.opacity(0.12), lineWidth: 1)
                 )
                 .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
 
                 Text("Turn Order")
                     .font(Theme.label(15))
-                    .foregroundStyle(Theme.cream.opacity(0.8))
+                    .foregroundStyle(Theme.starlight.opacity(0.8))
 
                 VStack(spacing: 10) {
                     ForEach(Array(round.turnOrder.enumerated()), id: \.offset) { position, player in
                         HStack(spacing: 14) {
                             Text("\(position + 1)")
                                 .font(Theme.label(16))
-                                .foregroundStyle(Theme.inkDeep)
+                                .foregroundStyle(Theme.deepSpace)
                                 .frame(width: 38, height: 38)
-                                .background(Circle().fill(Theme.sunset))
+                                .background(Circle().fill(Theme.visor))
                             Text(round.players[player])
                                 .font(Theme.label(18))
-                                .foregroundStyle(Theme.cream)
+                                .foregroundStyle(Theme.starlight)
                             Spacer()
                             if position == 0 {
                                 Text("STARTS")
                                     .font(Theme.label(11))
                                     .tracking(2)
-                                    .foregroundStyle(Theme.amber)
+                                    .foregroundStyle(Theme.warning)
                             }
                         }
                         .padding(.horizontal, 16)
                         .padding(.vertical, 12)
-                        .background(position == 0 ? Theme.fog.opacity(0.28) : Theme.ink.opacity(0.45))
+                        .background(position == 0 ? Theme.steel.opacity(0.28) : Theme.hull.opacity(0.45))
                         .overlay(
                             RoundedRectangle(cornerRadius: 18, style: .continuous)
                                 .strokeBorder(
-                                    position == 0 ? Theme.orange.opacity(0.6) : Theme.cream.opacity(0.1),
+                                    position == 0 ? Theme.beacon.opacity(0.6) : Theme.starlight.opacity(0.1),
                                     lineWidth: 1
                                 )
                         )
@@ -304,36 +305,36 @@ private struct ResultPhase: View {
                 Text("THE WORD WAS")
                     .font(Theme.label(12))
                     .tracking(4)
-                    .foregroundStyle(Theme.cream.opacity(0.5))
+                    .foregroundStyle(Theme.starlight.opacity(0.5))
                     .modifier(entrance(0))
 
                 Text(round.card.word)
                     .font(Theme.display(42))
                     .multilineTextAlignment(.center)
-                    .foregroundStyle(Theme.sunset)
-                    .glow(Theme.orange, radius: 22)
+                    .foregroundStyle(Theme.visor)
+                    .glow(Theme.beacon, radius: 22)
                     .scaleEffect(appeared ? 1 : 0.86)
                     .opacity(appeared ? 1 : 0)
                     .animation(Theme.bouncy.delay(0.08), value: appeared)
 
                 Text(round.category)
                     .font(Theme.label(14))
-                    .foregroundStyle(Theme.cream.opacity(0.45))
+                    .foregroundStyle(Theme.starlight.opacity(0.45))
                     .padding(.bottom, 4)
                     .modifier(entrance(2))
 
                 VStack(alignment: .leading, spacing: 10) {
                     Text(imposterNames.count == 1 ? "The Imposter" : "The Imposters")
                         .font(Theme.label(14))
-                        .foregroundStyle(Theme.cream.opacity(0.55))
+                        .foregroundStyle(Theme.starlight.opacity(0.55))
                         .modifier(entrance(3))
 
                     ForEach(Array(imposterNames.enumerated()), id: \.element) { slot, index in
                         HStack(spacing: 10) {
-                            Text("\u{1F575}\u{FE0F}")
+                            CrewFigure(tint: Theme.alert, size: 30, sinister: true)
                             Text(round.players[index])
                                 .font(Theme.label(18))
-                                .foregroundStyle(Theme.ember)
+                                .foregroundStyle(Theme.starlight)
                             Spacer(minLength: 8)
                             Text(
                                 round.revealedHint(for: index).isEmpty
@@ -341,14 +342,14 @@ private struct ResultPhase: View {
                                     : "\u{201C}\(round.revealedHint(for: index))\u{201D}"
                             )
                             .font(.system(size: 14, weight: .medium, design: .rounded))
-                            .foregroundStyle(Theme.cream.opacity(0.5))
+                            .foregroundStyle(Theme.starlight.opacity(0.5))
                         }
                         .padding(.horizontal, 16)
                         .padding(.vertical, 13)
-                        .background(Theme.crimson.opacity(0.18))
+                        .background(Theme.alert.opacity(0.2))
                         .overlay(
                             RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                .strokeBorder(Theme.orange.opacity(0.55), lineWidth: 1)
+                                .strokeBorder(Theme.alert.opacity(0.85), lineWidth: 1.2)
                         )
                         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                         .modifier(entrance(4 + slot))
@@ -357,7 +358,7 @@ private struct ResultPhase: View {
                     if round.players.count > imposterNames.count {
                         Text("Everyone else had the word.")
                             .font(.system(size: 13, weight: .medium, design: .rounded))
-                            .foregroundStyle(Theme.cream.opacity(0.4))
+                            .foregroundStyle(Theme.starlight.opacity(0.4))
                             .padding(.top, 2)
                     }
                 }
@@ -370,9 +371,10 @@ private struct ResultPhase: View {
                 Button(action: menu) {
                     Label("Back to Menu", systemImage: "house.fill")
                         .font(Theme.label(16))
-                        .foregroundStyle(Theme.cream.opacity(0.65))
+                        .foregroundStyle(Theme.starlight.opacity(0.65))
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 15)
+                        .contentShape(Rectangle())
                 }
                 .pressable(scale: 0.95, dims: true)
                 .padding(.bottom, 40)
@@ -409,11 +411,11 @@ private struct PhaseHeader: View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title)
                 .font(Theme.display(34))
-                .foregroundStyle(Theme.sunset)
-                .glow(Theme.orange, radius: 16)
+                .foregroundStyle(Theme.visor)
+                .glow(Theme.beacon, radius: 16)
             Text(detail)
                 .font(.system(size: 15, weight: .medium, design: .rounded))
-                .foregroundStyle(Theme.cream.opacity(0.65))
+                .foregroundStyle(Theme.starlight.opacity(0.65))
                 .fixedSize(horizontal: false, vertical: true)
         }
         .padding(.top, 10)
@@ -429,12 +431,12 @@ private struct PrimaryButton: View {
         Button(action: action) {
             Label(title, systemImage: icon)
                 .font(Theme.label(18))
-                .foregroundStyle(Theme.inkDeep)
+                .foregroundStyle(Theme.deepSpace)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 18)
-                .background(Theme.sunset)
+                .background(Theme.visor)
                 .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                .glow(Theme.orange, radius: 20, strength: 0.85)
+                .glow(Theme.beacon, radius: 20, strength: 0.85)
         }
         .pressable()
     }
@@ -473,18 +475,18 @@ private struct ArmedRevealButton: View {
                 systemImage: armed ? "exclamationmark.triangle.fill" : "eye.fill"
             )
             .font(Theme.label(18))
-            .foregroundStyle(armed ? Theme.cream : Theme.inkDeep)
+            .foregroundStyle(armed ? Theme.starlight : Theme.deepSpace)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 18)
             .background {
                 ZStack(alignment: .leading) {
-                    Theme.sunset
-                    Theme.crimson.opacity(armed ? 1 : 0)
+                    Theme.visor
+                    Theme.alert.opacity(armed ? 1 : 0)
 
                     // The time left, draining left to right behind the label.
                     GeometryReader { geo in
                         Rectangle()
-                            .fill(Theme.cream.opacity(0.18))
+                            .fill(Theme.starlight.opacity(0.18))
                             .frame(width: geo.size.width * drain)
                     }
                     .opacity(armed ? 1 : 0)
@@ -493,9 +495,9 @@ private struct ArmedRevealButton: View {
             .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
             .overlay(
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .strokeBorder(Theme.cream.opacity(armed ? 0.5 : 0), lineWidth: 1.5)
+                    .strokeBorder(Theme.starlight.opacity(armed ? 0.5 : 0), lineWidth: 1.5)
             )
-            .glow(armed ? Theme.crimson : Theme.orange, radius: 20, strength: 0.85)
+            .glow(armed ? Theme.alert : Theme.beacon, radius: 20, strength: 0.85)
         }
         .pressable()
         .sensoryFeedback(.warning, trigger: armed) { _, now in now }

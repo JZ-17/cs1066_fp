@@ -8,7 +8,7 @@ struct PlayerNamesView: View {
 
     var body: some View {
         ZStack {
-            Theme.dusk.ignoresSafeArea()
+            Theme.space.ignoresSafeArea()
 
             VStack(spacing: 0) {
                 ScrollView {
@@ -16,8 +16,8 @@ struct PlayerNamesView: View {
 
                         Text("Player Names")
                             .font(Theme.display(32))
-                            .foregroundStyle(Theme.sunset)
-                            .glow(Theme.orange, radius: 14)
+                            .foregroundStyle(Theme.visor)
+                            .glow(Theme.beacon, radius: 14)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .belowNavigationBar()
                             .padding(.bottom, 6)
@@ -58,18 +58,18 @@ struct PlayerNamesView: View {
                         systemImage: settings.canStart ? "play.fill" : "rectangle.stack"
                     )
                         .font(Theme.label(19))
-                        .foregroundStyle(settings.canStart ? Theme.inkDeep : Theme.cream.opacity(0.45))
+                        .foregroundStyle(settings.canStart ? Theme.deepSpace : Theme.starlight.opacity(0.45))
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 18)
                         .background {
                             if settings.canStart {
-                                Theme.sunset
+                                Theme.visor
                             } else {
-                                Theme.ink.opacity(0.7)
+                                Theme.hull.opacity(0.7)
                             }
                         }
                         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                        .glow(Theme.orange, radius: 20, strength: settings.canStart ? 0.85 : 0)
+                        .glow(Theme.beacon, radius: 20, strength: settings.canStart ? 0.85 : 0)
                 }
                 .pressable()
                 .disabled(!settings.canStart)
@@ -77,7 +77,7 @@ struct PlayerNamesView: View {
                 .padding(.bottom, 14)
                 .frame(maxWidth: 560)
                 .frame(maxWidth: .infinity)
-                .background(Theme.inkDeep.opacity(0.75))
+                .background(Theme.deepSpace.opacity(0.75))
             }
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -87,7 +87,7 @@ struct PlayerNamesView: View {
                 Spacer()
                 Button("Done") { focused = nil }
                     .font(Theme.label(17))
-                    .foregroundStyle(Theme.ember)
+                    .foregroundStyle(Theme.signal)
             }
         }
     }
@@ -96,15 +96,15 @@ struct PlayerNamesView: View {
         HStack(spacing: 14) {
             Image(systemName: "person.2.fill")
                 .font(.system(size: 17, weight: .bold))
-                .foregroundStyle(Theme.inkDeep)
+                .foregroundStyle(Theme.deepSpace)
                 .frame(width: 44, height: 44)
                 .background(
-                    RoundedRectangle(cornerRadius: 13, style: .continuous).fill(Theme.sunset)
+                    RoundedRectangle(cornerRadius: 13, style: .continuous).fill(Theme.visor)
                 )
 
             Text("\(settings.playerCount) Players")
                 .font(Theme.label(20))
-                .foregroundStyle(Theme.cream)
+                .foregroundStyle(Theme.starlight)
                 .contentTransition(.numericText())
                 .animation(Theme.quick, value: settings.playerCount)
 
@@ -112,13 +112,13 @@ struct PlayerNamesView: View {
 
             Text("\(GameSettings.playerRange.lowerBound)–\(GameSettings.playerRange.upperBound)")
                 .font(.system(size: 15, weight: .medium, design: .rounded))
-                .foregroundStyle(Theme.cream.opacity(0.55))
+                .foregroundStyle(Theme.starlight.opacity(0.55))
         }
         .padding(16)
-        .background(Theme.fog.opacity(0.28))
+        .background(Theme.steel.opacity(0.28))
         .overlay(
             RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .strokeBorder(Theme.orange.opacity(0.65), lineWidth: 1.4)
+                .strokeBorder(Theme.beacon.opacity(0.65), lineWidth: 1.4)
         )
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .lift(radius: 14, y: 7)
@@ -130,7 +130,7 @@ struct PlayerNamesView: View {
             Button {
                 withAnimation(Theme.bouncy) { settings.removePlayer() }
             } label: {
-                barLabel("person.badge.minus", "Remove", tint: Theme.crimson)
+                barLabel("person.badge.minus", "Remove", tint: Theme.alert)
             }
             .pressable(scale: 0.95, dims: true)
             .disabled(settings.playerCount <= GameSettings.playerRange.lowerBound)
@@ -139,7 +139,7 @@ struct PlayerNamesView: View {
             Button {
                 withAnimation(Theme.bouncy) { settings.addPlayer() }
             } label: {
-                barLabel("person.badge.plus", "Add", tint: Theme.orange)
+                barLabel("person.badge.plus", "Add", tint: Theme.beacon)
             }
             .pressable(scale: 0.95, dims: true)
             .disabled(settings.playerCount >= GameSettings.playerRange.upperBound)
@@ -149,7 +149,7 @@ struct PlayerNamesView: View {
         .padding(.top, 16)
         .padding(.bottom, 10)
         .containerRelativeFrame(.horizontal) { width, _ in min(width, 560) }
-        .background(Theme.inkDeep.opacity(0.75))
+        .background(Theme.deepSpace.opacity(0.75))
     }
 
     private func barLabel(_ icon: String, _ title: String, tint: Color) -> some View {
@@ -159,7 +159,7 @@ struct PlayerNamesView: View {
             Text(title)
                 .font(Theme.label(18))
         }
-        .foregroundStyle(tint == Theme.orange ? Theme.amber : Theme.ember)
+        .foregroundStyle(tint == Theme.beacon ? Theme.warning : Theme.signal)
         .frame(maxWidth: .infinity)
         .padding(.vertical, 16)
         .overlay(
@@ -167,6 +167,7 @@ struct PlayerNamesView: View {
                 .strokeBorder(tint.opacity(0.85), lineWidth: 1.6)
         )
         .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+        .contentShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
     }
 }
 
@@ -186,17 +187,17 @@ struct PlayerRow: View {
         HStack(spacing: 14) {
             Text("\(index + 1)")
                 .font(Theme.label(19))
-                .foregroundStyle(Theme.inkDeep)
+                .foregroundStyle(Theme.deepSpace)
                 .frame(width: 48, height: 48)
                 .background(
-                    RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Theme.sunset)
+                    RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Theme.visor)
                 )
 
             TextField("", text: $name, prompt: Text("Player \(index + 1)")
-                .foregroundColor(Theme.cream.opacity(0.35)))
+                .foregroundColor(Theme.starlight.opacity(0.35)))
                 .font(Theme.label(18))
-                .foregroundStyle(Theme.cream)
-                .tint(Theme.ember)
+                .foregroundStyle(Theme.starlight)
+                .tint(Theme.signal)
                 .textInputAutocapitalization(.words)
                 .autocorrectionDisabled()
                 .submitLabel(.next)
@@ -204,11 +205,11 @@ struct PlayerRow: View {
                 .onSubmit(submit)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 10)
-                .background(Theme.inkDeep.opacity(isEditing ? 0.75 : 0.5))
+                .background(Theme.deepSpace.opacity(isEditing ? 0.75 : 0.5))
                 .overlay(
                     RoundedRectangle(cornerRadius: 12, style: .continuous)
                         .strokeBorder(
-                            isEditing ? Theme.orange.opacity(0.9) : Theme.cream.opacity(0.18),
+                            isEditing ? Theme.beacon.opacity(0.9) : Theme.starlight.opacity(0.18),
                             lineWidth: isEditing ? 2 : 1
                         )
                 )
@@ -218,18 +219,19 @@ struct PlayerRow: View {
             Button(action: remove) {
                 Image(systemName: "xmark")
                     .font(.system(size: 15, weight: .bold))
-                    .foregroundStyle(canRemove ? Theme.cream.opacity(0.6) : Theme.cream.opacity(0.2))
+                    .foregroundStyle(canRemove ? Theme.starlight.opacity(0.6) : Theme.starlight.opacity(0.2))
                     .frame(width: 34, height: 34)
+                    .contentShape(Rectangle())
             }
             .pressable(scale: 0.85, dims: true)
             .disabled(!canRemove)
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 14)
-        .background(Theme.ink.opacity(isEditing ? 0.7 : 0.45))
+        .background(Theme.hull.opacity(isEditing ? 0.7 : 0.45))
         .overlay(
             RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .strokeBorder(Theme.cream.opacity(0.1), lineWidth: 1)
+                .strokeBorder(Theme.starlight.opacity(0.1), lineWidth: 1)
         )
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .lift(radius: 10, y: 5)

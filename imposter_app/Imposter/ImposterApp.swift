@@ -28,11 +28,11 @@ struct RootView: View {
 
     var body: some View {
         ZStack {
-            Theme.inkDeep.ignoresSafeArea()
+            Theme.deepSpace.ignoresSafeArea()
 
             switch screenOverride {
             case "setup":
-                NavigationStack { GameSetupView(settings: settings, flow: flow) }.tint(Theme.ember)
+                NavigationStack { GameSetupView(settings: settings, flow: flow) }.tint(Theme.signal)
             case "clues":
                 NavigationStack {
                     RoundFlowView(round: {
@@ -44,20 +44,20 @@ struct RootView: View {
                         r.phase = .clues
                         return r
                     }(), flow: flow)
-                }.tint(Theme.ember)
+                }.tint(Theme.signal)
             case "round":
                 NavigationStack {
                     RoundFlowView(round: GameRound(settings: settings, deck: Decks.foods), flow: flow)
-                }.tint(Theme.ember)
+                }.tint(Theme.signal)
             case "decks":
-                NavigationStack { DeckPickerView(settings: settings) }.tint(Theme.ember)
+                NavigationStack { DeckPickerView(settings: settings) }.tint(Theme.signal)
             case "decks-empty":
                 NavigationStack {
                     DeckPickerView(settings: {
                         settings.deselectAllDecks()
                         return settings
                     }())
-                }.tint(Theme.ember)
+                }.tint(Theme.signal)
             case "reveal":
                 NavigationStack {
                     RoundFlowView(round: {
@@ -68,11 +68,11 @@ struct RootView: View {
                         r.phase = .result
                         return r
                     }(), flow: flow)
-                }.tint(Theme.ember)
+                }.tint(Theme.signal)
             case "howto":
-                NavigationStack { HowToPlayView() }.tint(Theme.ember)
+                NavigationStack { HowToPlayView() }.tint(Theme.signal)
             case "names":
-                NavigationStack { PlayerNamesView(settings: settings, flow: flow) }.tint(Theme.ember)
+                NavigationStack { PlayerNamesView(settings: settings, flow: flow) }.tint(Theme.signal)
             default:
                 if showHome {
                     HomeView()

@@ -18,8 +18,8 @@ final class GameRound {
     let players: [String]
     let card: Card
 
-    /// The deck's name — "Animals", "Foods". This is all a blind imposter is
-    /// given, and it is the baseline difficulty for the role.
+    /// The deck's name, such as "Animals" or "Foods". This is all a blind
+    /// imposter gets. It sets the baseline difficulty for the role.
     let category: String
 
     let imposters: Set<Int>
@@ -91,7 +91,7 @@ final class GameRound {
 
     /// What this player sees when they tap their name. Innocents get the word.
     /// An imposter gets their hint if hints are on, and otherwise the category
-    /// alone — which is the whole difficulty of the default mode.
+    /// alone. That is the whole difficulty of the default mode.
     func secret(for index: Int) -> String {
         guard isImposter(index) else { return card.word }
         return hints[index] ?? category
@@ -106,7 +106,7 @@ final class GameRound {
     /// The line under an imposter's reveal.
     func imposterNote(for index: Int) -> String {
         hints[index] == nil
-            ? "You are the imposter. The category is all you get — listen hard."
+            ? "You are the imposter. All you get is the category. Listen hard."
             : "You are the imposter. Blend in."
     }
 
@@ -132,8 +132,8 @@ final class GameRound {
     var briefing: [String] {
         var lines = [
             "Start with \(leadPlayer) and follow the order below.",
-            "Say one word connected to the secret. Not a sentence, not a definition.",
-            "Go around at least twice before you settle on anyone. A single pass almost never gives the group enough to work with.",
+            "Say one word linked to the secret. Not a sentence. Not a definition.",
+            "Go around twice before you pick anyone. One pass is never enough.",
         ]
 
         if imposterCountIsSecret {
@@ -146,20 +146,20 @@ final class GameRound {
 
         lines.append(
             imposterGetsHint
-                ? "The deck is \(category), and imposters were given a hint word. Expect their clues to land close to the mark."
-                : "The deck is \(category), and that is all the imposters know. Early clues are a guess for them, so watch who plays it safe."
+                ? "The deck is \(category). Imposters also got a hint word. Their clues will sound close to right."
+                : "The deck is \(category). That is all the imposters know. Their first clues are guesses, so watch who plays it safe."
         )
 
         if imposters.count > 1 || imposterCountIsSecret {
             lines.append(
                 impostersKnowEachOther
-                    ? "Any imposters know who each other are, so expect them to cover for one another."
-                    : "Imposters do not know who each other are, so they may well accuse a teammate."
+                    ? "The imposters know each other. Expect them to cover for one another."
+                    : "The imposters do not know each other. One might accuse a teammate."
             )
         }
 
         if imposterNeverGoesFirst {
-            lines.append("\(leadPlayer) is innocent for certain — an imposter never leads.")
+            lines.append("\(leadPlayer) is not the imposter. An imposter never goes first.")
         }
 
         return lines

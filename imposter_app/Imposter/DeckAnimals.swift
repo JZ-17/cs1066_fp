@@ -3,7 +3,7 @@ import Foundation
 /// The Animals deck: 100 secret words, 5 hints each.
 ///
 /// Same hint rule. Animals are the easiest category to get wrong, because the
-/// obvious hint is usually a body part that belongs to exactly one creature —
+/// obvious hint is usually a body part that belongs to exactly one creature.
 /// "trunk" for Elephant, "mane" for Lion. Those are kept to at most one per
 /// card, balanced by hints that several animals could claim: habitat, a
 /// behaviour, a cultural association, a sound.

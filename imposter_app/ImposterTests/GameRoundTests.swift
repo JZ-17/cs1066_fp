@@ -209,8 +209,8 @@ final class GameRoundTests: XCTestCase {
             .briefing.joined(separator: " ")
         let hinted = GameRound(settings: makeSettings(hints: true), deck: Decks.sports)
             .briefing.joined(separator: " ")
-        XCTAssertTrue(blind.contains("that is all the imposters know"), blind)
-        XCTAssertTrue(hinted.contains("given a hint word"), hinted)
+        XCTAssertTrue(blind.contains("all the imposters know"), blind)
+        XCTAssertTrue(hinted.contains("hint word"), hinted)
     }
 
     func testBriefingStatesTheImposterCountUnlessItIsSecret() {
@@ -230,10 +230,10 @@ final class GameRoundTests: XCTestCase {
 
     func testBriefingMentionsTheLeadGuaranteeOnlyWhenItApplies() {
         let on = GameRound(settings: makeSettings(neverFirst: true), deck: Decks.foods)
-        XCTAssertTrue(on.briefing.joined().contains("innocent for certain"))
+        XCTAssertTrue(on.briefing.joined().contains("never goes first"))
 
         let off = GameRound(settings: makeSettings(neverFirst: false), deck: Decks.foods)
-        XCTAssertFalse(off.briefing.joined().contains("innocent for certain"))
+        XCTAssertFalse(off.briefing.joined().contains("never goes first"))
     }
 
     // MARK: - Phases

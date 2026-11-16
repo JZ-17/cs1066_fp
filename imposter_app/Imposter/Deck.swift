@@ -2,7 +2,7 @@ import Foundation
 
 /// One row of a deck: the secret word plus the hints an imposter may be given.
 ///
-/// Hints follow the calibration rule from the generator — one or two words,
+/// Hints follow the calibration rule from the generator. One or two words,
 /// associated with the answer rather than describing it, and ambiguous enough
 /// that hearing one alone should not identify the word.
 struct Card: Hashable {

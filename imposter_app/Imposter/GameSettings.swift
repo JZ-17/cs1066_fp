@@ -35,9 +35,9 @@ final class GameSettings {
     /// teammate, which plays better than letting them coordinate.
     private(set) var impostersKnowEachOther: Bool = false
 
-    /// Blind imposters cannot collude, so almost everyone can be one — at the
-    /// limit a single innocent holds the word. Imposters who know each other
-    /// can coordinate, so they are held to half the table.
+    /// Blind imposters cannot work together, so almost everyone can be one.
+    /// At the limit a single innocent holds the word. Imposters who know each
+    /// other can coordinate, so they are capped at half the table.
     var imposterRange: ClosedRange<Int> {
         1...imposterCap
     }
@@ -69,8 +69,8 @@ final class GameSettings {
         Decks.all.filter { selectedDeckIDs.contains($0.id) }
     }
 
-    /// Deselecting every deck is allowed — there is a Deselect All button —
-    /// so the start button has to be able to refuse.
+    /// Deselecting every deck is allowed, since there is a Deselect All
+    /// button. So the start button has to be able to refuse.
     var canStart: Bool { !selectedDecks.isEmpty }
 
     var deckSummary: String {

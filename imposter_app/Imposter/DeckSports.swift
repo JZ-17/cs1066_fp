@@ -5,7 +5,7 @@ import Foundation
 /// Same hint rule as the other decks. Note what is deliberately absent: no
 /// player names. "Messi" is short, but it points at exactly one sport and
 /// nothing else, so it hands the round to the imposter. Hints here name
-/// equipment, surfaces, rituals and scoring quirks — things several sports
+/// equipment, surfaces, rituals and scoring quirks. Things several sports
 /// could plausibly share.
 extension Decks {
 

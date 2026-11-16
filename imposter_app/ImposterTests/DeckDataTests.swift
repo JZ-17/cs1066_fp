@@ -3,8 +3,8 @@ import XCTest
 
 /// Guards the deck data itself. These are the regression tests for the hint
 /// rules: one or two lowercase words, associative rather than descriptive, and
-/// never a giveaway. A machine can only check the mechanical half of that —
-/// the judgement half needs a person or the generator's scorer — so these
+/// never a giveaway. A machine can only check the mechanical half of that.
+/// The judgement half needs a person or the generator's scorer. So these
 /// catch the failures that *are* mechanical and leave the rest documented.
 final class DeckDataTests: XCTestCase {
 
@@ -91,7 +91,7 @@ final class DeckDataTests: XCTestCase {
     }
 
     /// Ambiguity is the point, so a hint shared across cards is good. A hint
-    /// unique to one card in a 100-card deck is the "Messi" failure — it
+    /// unique to one card in a 100-card deck is the "Messi" failure. It
     /// points at exactly one answer. This is a soft signal, so the bar is
     /// deliberately loose: it only fires if a deck has almost no overlap at
     /// all, which would mean the ambiguity rule was abandoned wholesale.

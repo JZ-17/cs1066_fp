@@ -12,8 +12,8 @@ struct GameSetupView: View {
 
                     Text("Game Settings")
                         .font(Theme.display(38))
-                        .foregroundStyle(Theme.sunset)
-                        .glow(Theme.orange, radius: 16)
+                        .foregroundStyle(Theme.visor)
+                        .glow(Theme.beacon, radius: 16)
                         .belowNavigationBar()
 
                     SectionLabel(icon: "person.3.fill", title: "Players")
@@ -37,23 +37,24 @@ struct GameSetupView: View {
                             HStack(spacing: 13) {
                                 Image(systemName: "rectangle.stack.fill")
                                     .font(.system(size: 17, weight: .bold))
-                                    .foregroundStyle(Theme.cream.opacity(0.65))
+                                    .foregroundStyle(Theme.starlight.opacity(0.65))
                                 VStack(alignment: .leading, spacing: 3) {
                                     Text("Word Decks")
                                         .font(Theme.label(16))
-                                        .foregroundStyle(Theme.cream)
+                                        .foregroundStyle(Theme.starlight)
                                     Text(settings.deckSummary)
                                         .font(.system(size: 13, weight: .medium, design: .rounded))
                                         .foregroundStyle(
-                                            settings.canStart ? Theme.cream.opacity(0.5) : Theme.ember
+                                            settings.canStart ? Theme.starlight.opacity(0.5) : Theme.signal
                                         )
                                 }
                                 Spacer(minLength: 8)
                                 Image(systemName: "chevron.right")
                                     .font(.system(size: 14, weight: .bold))
-                                    .foregroundStyle(Theme.cream.opacity(0.35))
+                                    .foregroundStyle(Theme.starlight.opacity(0.35))
                             }
                             .padding(.vertical, 2)
+                            .contentShape(Rectangle())
                         }
                     }
                     .pressable(scale: 0.98, dims: true)
@@ -96,13 +97,13 @@ struct GameSetupView: View {
                             HStack(spacing: 12) {
                                 Image(systemName: "nosign")
                                     .font(.system(size: 17, weight: .bold))
-                                    .foregroundStyle(Theme.cream.opacity(0.65))
+                                    .foregroundStyle(Theme.starlight.opacity(0.65))
                                 Text("Imposter Never Goes First")
                                     .font(Theme.label(16))
-                                    .foregroundStyle(Theme.cream)
+                                    .foregroundStyle(Theme.starlight)
                             }
                         }
-                        .tint(Theme.orange)
+                        .tint(Theme.beacon)
                         .padding(.vertical, 4)
                     }
 
@@ -111,19 +112,19 @@ struct GameSetupView: View {
                             HStack(alignment: .top, spacing: 12) {
                                 Image(systemName: "lightbulb.fill")
                                     .font(.system(size: 17, weight: .bold))
-                                    .foregroundStyle(Theme.cream.opacity(0.65))
+                                    .foregroundStyle(Theme.starlight.opacity(0.65))
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text("Give Imposters a Hint")
                                         .font(Theme.label(16))
-                                        .foregroundStyle(Theme.cream)
-                                    Text("Off, an imposter sees only the category — “Animals”, and nothing else. On, they also draw one hint word at random, which makes bluffing far easier.")
+                                        .foregroundStyle(Theme.starlight)
+                                    Text("Off: the imposter only sees the category, like “Animals”. On: they also get one random hint word. That makes bluffing much easier.")
                                         .font(.system(size: 12, weight: .medium, design: .rounded))
-                                        .foregroundStyle(Theme.cream.opacity(0.5))
+                                        .foregroundStyle(Theme.starlight.opacity(0.5))
                                         .fixedSize(horizontal: false, vertical: true)
                                 }
                             }
                         }
-                        .tint(Theme.orange)
+                        .tint(Theme.beacon)
                         .padding(.vertical, 4)
                     }
 
@@ -136,19 +137,19 @@ struct GameSetupView: View {
                                 HStack(alignment: .top, spacing: 12) {
                                     Image(systemName: "person.2.badge.key.fill")
                                         .font(.system(size: 17, weight: .bold))
-                                        .foregroundStyle(Theme.cream.opacity(0.65))
+                                        .foregroundStyle(Theme.starlight.opacity(0.65))
                                     VStack(alignment: .leading, spacing: 2) {
                                         Text("Imposters Know Each Other")
                                             .font(Theme.label(16))
-                                            .foregroundStyle(Theme.cream)
-                                        Text("On, they can cover for each other — so fewer are allowed. Off, they play blind and may accuse a teammate.")
+                                            .foregroundStyle(Theme.starlight)
+                                        Text("On: they can cover for each other, so fewer are allowed. Off: they play blind and might accuse a teammate.")
                                             .font(.system(size: 12, weight: .medium, design: .rounded))
-                                            .foregroundStyle(Theme.cream.opacity(0.5))
+                                            .foregroundStyle(Theme.starlight.opacity(0.5))
                                             .fixedSize(horizontal: false, vertical: true)
                                     }
                                 }
                             }
-                            .tint(Theme.orange)
+                            .tint(Theme.beacon)
                             .padding(.vertical, 4)
                         }
                     }
@@ -159,12 +160,12 @@ struct GameSetupView: View {
                             Image(systemName: "arrow.right")
                         }
                         .font(Theme.label(19))
-                        .foregroundStyle(Theme.inkDeep)
+                        .foregroundStyle(Theme.deepSpace)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 18)
-                        .background(Theme.sunset)
+                        .background(Theme.visor)
                         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                        .glow(Theme.orange, radius: 22, strength: 0.9)
+                        .glow(Theme.beacon, radius: 22, strength: 0.9)
                     }
                     .padding(.top, 4)
                     .padding(.bottom, 40)
@@ -181,7 +182,7 @@ struct GameSetupView: View {
                 Spacer()
                 Button("Done") { editing = nil }
                     .font(Theme.label(17))
-                    .foregroundStyle(Theme.ember)
+                    .foregroundStyle(Theme.signal)
             }
         }
     }
@@ -197,10 +198,10 @@ struct SectionLabel: View {
         HStack(spacing: 9) {
             Image(systemName: icon)
                 .font(.system(size: 14, weight: .bold))
-                .foregroundStyle(Theme.ember)
+                .foregroundStyle(Theme.signal)
             Text(title)
                 .font(Theme.label(17))
-                .foregroundStyle(Theme.cream.opacity(0.85))
+                .foregroundStyle(Theme.starlight.opacity(0.85))
         }
     }
 }
@@ -213,10 +214,10 @@ struct Panel<Content: View>: View {
         content
             .padding(18)
             .frame(maxWidth: .infinity)
-            .background(Theme.ink.opacity(0.5))
+            .background(Theme.hull.opacity(0.5))
             .overlay(
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .strokeBorder(Theme.cream.opacity(0.12), lineWidth: 1)
+                    .strokeBorder(Theme.starlight.opacity(0.12), lineWidth: 1)
             )
             .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
             .lift(radius: 14, y: 7)
@@ -263,12 +264,12 @@ struct StepperRow: View {
             if let badge {
                 Text(badge)
                     .font(Theme.label(13))
-                    .foregroundStyle(Theme.amber)
+                    .foregroundStyle(Theme.warning)
             }
             if let footnote {
                 Text(footnote)
                     .font(.system(size: 13, weight: .medium, design: .rounded))
-                    .foregroundStyle(Theme.cream.opacity(0.5))
+                    .foregroundStyle(Theme.starlight.opacity(0.5))
                     .multilineTextAlignment(.center)
             }
         }
@@ -287,15 +288,15 @@ struct StepperRow: View {
             .keyboardType(.numberPad)
             .multilineTextAlignment(.center)
             .font(Theme.display(34))
-            .foregroundStyle(Theme.inkDeep)
-            .tint(Theme.inkDeep)
+            .foregroundStyle(Theme.deepSpace)
+            .tint(Theme.deepSpace)
             .focused(focus, equals: field)
             .frame(width: 104, height: 84)
-            .background(Theme.sunset)
+            .background(Theme.visor)
             .overlay(
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
                     .strokeBorder(
-                        isEditing ? Theme.cream.opacity(0.95) : Theme.inkDeep.opacity(0.4),
+                        isEditing ? Theme.starlight.opacity(0.95) : Theme.deepSpace.opacity(0.4),
                         lineWidth: isEditing ? 3 : 2
                     )
             )
@@ -303,11 +304,11 @@ struct StepperRow: View {
                 // Small affordance so the chip reads as something you can type in.
                 Image(systemName: "square.and.pencil")
                     .font(.system(size: 11, weight: .bold))
-                    .foregroundStyle(Theme.inkDeep.opacity(isEditing ? 0 : 0.5))
+                    .foregroundStyle(Theme.deepSpace.opacity(isEditing ? 0 : 0.5))
                     .padding(7)
             }
             .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-            .glow(Theme.orange, radius: 18, strength: 0.8)
+            .glow(Theme.beacon, radius: 18, strength: 0.8)
             .animation(Theme.quick, value: isEditing)
             .onChange(of: text) { _, new in
                 // numberPad still admits paste and dictation, so filter here.
@@ -335,12 +336,16 @@ struct StepperRow: View {
         Button(action: action) {
             Image(systemName: symbol)
                 .font(.system(size: 20, weight: .bold))
-                .foregroundStyle(enabled ? Theme.cream : Theme.cream.opacity(0.22))
+                .foregroundStyle(enabled ? Theme.starlight : Theme.starlight.opacity(0.22))
                 .frame(width: 66, height: 66)
                 .background(
                     RoundedRectangle(cornerRadius: 18, style: .continuous)
-                        .strokeBorder(Theme.cream.opacity(enabled ? 0.25 : 0.1), lineWidth: 1.5)
+                        .strokeBorder(Theme.starlight.opacity(enabled ? 0.25 : 0.1), lineWidth: 1.5)
                 )
+                // Without this only the glyph and the 1.5pt outline are
+                // tappable. The rest of the 66pt square is empty space, and
+                // SwiftUI does not hit-test empty space.
+                .contentShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
         }
         .pressable(scale: 0.9, dims: true)
         .disabled(!enabled)
@@ -378,21 +383,21 @@ struct OptionPanel<Expanded: View>: View {
                 HStack(spacing: 14) {
                     Image(systemName: icon)
                         .font(.system(size: 17, weight: .bold))
-                        .foregroundStyle(selected ? Theme.inkDeep : Theme.ember)
+                        .foregroundStyle(selected ? Theme.deepSpace : Theme.signal)
                         .frame(width: 44, height: 44)
                         .background(
                             RoundedRectangle(cornerRadius: 13, style: .continuous)
-                                .fill(selected ? AnyShapeStyle(Theme.sunset)
-                                               : AnyShapeStyle(Theme.ink.opacity(0.9)))
+                                .fill(selected ? AnyShapeStyle(Theme.visor)
+                                               : AnyShapeStyle(Theme.hull.opacity(0.9)))
                         )
 
                     VStack(alignment: .leading, spacing: 2) {
                         Text(title)
                             .font(Theme.label(18))
-                            .foregroundStyle(selected ? Theme.amber : Theme.cream)
+                            .foregroundStyle(selected ? Theme.warning : Theme.starlight)
                         Text(subtitle)
                             .font(.system(size: 13, weight: .medium, design: .rounded))
-                            .foregroundStyle(Theme.cream.opacity(0.55))
+                            .foregroundStyle(Theme.starlight.opacity(0.55))
                     }
 
                     Spacer(minLength: 8)
@@ -400,12 +405,12 @@ struct OptionPanel<Expanded: View>: View {
                     ZStack {
                         Circle()
                             .strokeBorder(
-                                selected ? Theme.orange : Theme.cream.opacity(0.3),
+                                selected ? Theme.beacon : Theme.starlight.opacity(0.3),
                                 lineWidth: 2
                             )
                             .frame(width: 26, height: 26)
                         if selected {
-                            Circle().fill(Theme.sunset).frame(width: 14, height: 14)
+                            Circle().fill(Theme.visor).frame(width: 14, height: 14)
                         }
                     }
                 }
@@ -418,17 +423,17 @@ struct OptionPanel<Expanded: View>: View {
         }
         .padding(18)
         .frame(maxWidth: .infinity)
-        .background(selected ? Theme.fog.opacity(0.3) : Theme.ink.opacity(0.5))
+        .background(selected ? Theme.steel.opacity(0.3) : Theme.hull.opacity(0.5))
         .overlay(
             RoundedRectangle(cornerRadius: 22, style: .continuous)
                 .strokeBorder(
-                    selected ? Theme.orange.opacity(0.9) : Theme.cream.opacity(0.12),
+                    selected ? Theme.beacon.opacity(0.9) : Theme.starlight.opacity(0.12),
                     lineWidth: selected ? 1.8 : 1
                 )
         )
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
         .lift(radius: 14, y: 7)
-        .glow(Theme.orange, radius: selected ? 16 : 0, strength: selected ? 0.55 : 0)
+        .glow(Theme.beacon, radius: selected ? 16 : 0, strength: selected ? 0.55 : 0)
         .animation(Theme.bouncy, value: selected)
     }
 }

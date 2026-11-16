@@ -14,13 +14,13 @@ struct DeckPickerView: View {
 
                 Text("Decks")
                     .font(Theme.display(38))
-                    .foregroundStyle(Theme.sunset)
-                    .glow(Theme.orange, radius: 16)
+                    .foregroundStyle(Theme.visor)
+                    .glow(Theme.beacon, radius: 16)
                     .belowNavigationBar()
 
-                Text("Each round draws its word from one of the decks below, picked at random. Turn off the ones you do not want in play.")
+                Text("Each round picks a word from one of these decks at random. Turn off any you do not want.")
                     .font(.system(size: 15, weight: .medium, design: .rounded))
-                    .foregroundStyle(Theme.cream.opacity(0.65))
+                    .foregroundStyle(Theme.starlight.opacity(0.65))
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(.bottom, 2)
 
@@ -69,26 +69,26 @@ struct DeckPickerView: View {
             HStack(spacing: 10) {
                 Image(systemName: "square.stack.3d.up.fill")
                     .font(.system(size: 14, weight: .bold))
-                    .foregroundStyle(Theme.amber)
+                    .foregroundStyle(Theme.warning)
                 Text("\(settings.selectedCardCount) words in play")
                     .font(.system(size: 14, weight: .medium, design: .rounded))
-                    .foregroundStyle(Theme.cream.opacity(0.7))
+                    .foregroundStyle(Theme.starlight.opacity(0.7))
             }
         } else {
             HStack(alignment: .top, spacing: 10) {
                 Image(systemName: "exclamationmark.triangle.fill")
                     .font(.system(size: 14, weight: .bold))
-                    .foregroundStyle(Theme.ember)
+                    .foregroundStyle(Theme.signal)
                 Text("Pick at least one deck. A round needs somewhere to draw its word from.")
                     .font(.system(size: 14, weight: .medium, design: .rounded))
-                    .foregroundStyle(Theme.ember)
+                    .foregroundStyle(Theme.signal)
                     .fixedSize(horizontal: false, vertical: true)
             }
             .padding(14)
-            .background(Theme.crimson.opacity(0.2))
+            .background(Theme.alert.opacity(0.2))
             .overlay(
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .strokeBorder(Theme.orange.opacity(0.5), lineWidth: 1)
+                    .strokeBorder(Theme.beacon.opacity(0.5), lineWidth: 1)
             )
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         }
@@ -111,32 +111,32 @@ private struct DeckRow: View {
                     .frame(width: 52, height: 52)
                     .background(
                         RoundedRectangle(cornerRadius: 15, style: .continuous)
-                            .fill(selected ? Theme.crimson.opacity(0.35) : Theme.ink.opacity(0.85))
+                            .fill(selected ? Theme.alert.opacity(0.35) : Theme.hull.opacity(0.85))
                     )
 
                 VStack(alignment: .leading, spacing: 3) {
                     Text(deck.name)
                         .font(Theme.label(18))
-                        .foregroundStyle(Theme.cream)
+                        .foregroundStyle(Theme.starlight)
                     Text("\(deck.cards.count) words")
                         .font(.system(size: 13, weight: .medium, design: .rounded))
-                        .foregroundStyle(Theme.cream.opacity(0.55))
+                        .foregroundStyle(Theme.starlight.opacity(0.55))
                 }
 
                 Spacer(minLength: 10)
 
                 Image(systemName: selected ? "checkmark.circle.fill" : "circle")
                     .font(.system(size: 23, weight: .semibold))
-                    .foregroundStyle(selected ? Theme.ember : Theme.cream.opacity(0.3))
+                    .foregroundStyle(selected ? Theme.signal : Theme.starlight.opacity(0.3))
                     .contentTransition(.symbolEffect(.replace))
                     .scaleEffect(selected ? 1.08 : 1)
             }
             .padding(14)
-            .background(selected ? Theme.ink.opacity(0.75) : Theme.ink.opacity(0.35))
+            .background(selected ? Theme.hull.opacity(0.75) : Theme.hull.opacity(0.35))
             .overlay(
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
                     .strokeBorder(
-                        selected ? Theme.orange.opacity(0.65) : Theme.cream.opacity(0.1),
+                        selected ? Theme.beacon.opacity(0.65) : Theme.starlight.opacity(0.1),
                         lineWidth: selected ? 1.5 : 1
                     )
             )
@@ -165,14 +165,14 @@ private struct BulkButton: View {
                 Text(title)
                     .font(Theme.label(15))
             }
-            .foregroundStyle(enabled ? Theme.cream : Theme.cream.opacity(0.3))
+            .foregroundStyle(enabled ? Theme.starlight : Theme.starlight.opacity(0.3))
             .frame(maxWidth: .infinity)
             .padding(.vertical, 13)
-            .background(Theme.ink.opacity(enabled ? 0.7 : 0.35))
+            .background(Theme.hull.opacity(enabled ? 0.7 : 0.35))
             .overlay(
                 RoundedRectangle(cornerRadius: 15, style: .continuous)
                     .strokeBorder(
-                        enabled ? Theme.cream.opacity(0.18) : Theme.cream.opacity(0.07),
+                        enabled ? Theme.starlight.opacity(0.18) : Theme.starlight.opacity(0.07),
                         lineWidth: 1
                     )
             )

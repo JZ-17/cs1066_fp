@@ -71,7 +71,14 @@ struct HomeView: View {
                 }
             }
         }
-        .tint(Theme.ember)
+        .tint(Theme.signal)
+        // Above the stack, so it covers the navigation bar too.
+        .overlay {
+            if let exit = flow.leaving {
+                AirlockCover(title: exit.title)
+                    .transition(.opacity)
+            }
+        }
         .opacity(appeared ? 1 : 0)
         .offset(y: appeared ? 0 : 18)
         .task {
@@ -84,12 +91,12 @@ struct HomeView: View {
             Text("IMPOSTER")
                 .font(Theme.display(52))
                 .tracking(2)
-                .foregroundStyle(Theme.sunset)
-                .glow(Theme.orange, radius: 24)
+                .foregroundStyle(Theme.visor)
+                .glow(Theme.beacon, radius: 24)
 
             Text("One of you is bluffing.")
                 .font(Theme.label(16))
-                .foregroundStyle(Theme.cream.opacity(0.78))
+                .foregroundStyle(Theme.starlight.opacity(0.78))
         }
     }
 }
@@ -123,22 +130,22 @@ struct MenuCardFace: View {
         HStack(spacing: 16) {
             Image(systemName: icon)
                 .font(.system(size: 20, weight: .bold))
-                .foregroundStyle(prominent ? Theme.inkDeep : Theme.ember)
+                .foregroundStyle(prominent ? Theme.deepSpace : Theme.signal)
                 .frame(width: 46, height: 46)
                 .background(
                     RoundedRectangle(cornerRadius: 14, style: .continuous)
-                        .fill(prominent ? Theme.cream.opacity(0.9) : Theme.ink.opacity(0.85))
+                        .fill(prominent ? Theme.starlight.opacity(0.9) : Theme.hull.opacity(0.85))
                 )
 
             VStack(alignment: .leading, spacing: 3) {
                 Text(title)
                     .font(Theme.label(19))
-                    .foregroundStyle(prominent ? Theme.inkDeep : Theme.cream)
+                    .foregroundStyle(prominent ? Theme.deepSpace : Theme.starlight)
                 if !subtitle.isEmpty {
                     Text(subtitle)
                         .font(.system(size: 13, weight: .medium, design: .rounded))
                         .foregroundStyle(
-                            prominent ? Theme.inkDeep.opacity(0.7) : Theme.cream.opacity(0.6)
+                            prominent ? Theme.deepSpace.opacity(0.7) : Theme.starlight.opacity(0.6)
                         )
                 }
             }
@@ -148,7 +155,7 @@ struct MenuCardFace: View {
             Image(systemName: "chevron.right")
                 .font(.system(size: 14, weight: .bold))
                 .foregroundStyle(
-                    prominent ? Theme.inkDeep.opacity(0.55) : Theme.cream.opacity(0.35)
+                    prominent ? Theme.deepSpace.opacity(0.55) : Theme.starlight.opacity(0.35)
                 )
         }
         .padding(.horizontal, 18)
@@ -156,19 +163,19 @@ struct MenuCardFace: View {
         .background(background)
         .overlay(
             RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .strokeBorder(Theme.cream.opacity(prominent ? 0.35 : 0.12), lineWidth: 1)
+                .strokeBorder(Theme.starlight.opacity(prominent ? 0.35 : 0.12), lineWidth: 1)
         )
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
         .lift(radius: prominent ? 26 : 16, y: prominent ? 14 : 8)
-        .glow(Theme.orange, radius: prominent ? 22 : 0, strength: prominent ? 0.8 : 0)
+        .glow(Theme.beacon, radius: prominent ? 22 : 0, strength: prominent ? 0.8 : 0)
     }
 
     @ViewBuilder
     private var background: some View {
         if prominent {
-            Theme.sunset
+            Theme.visor
         } else {
-            Theme.ink.opacity(0.55)
+            Theme.hull.opacity(0.55)
         }
     }
 }
