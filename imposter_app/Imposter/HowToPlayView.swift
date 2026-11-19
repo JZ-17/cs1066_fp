@@ -54,6 +54,7 @@ struct HowToPlayView: View {
         .background { Theme.backdrop }
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
+        .spaceBackButton()
     }
 
     private var tip: some View {

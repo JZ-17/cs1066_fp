@@ -5,9 +5,16 @@ import SwiftUI
 /// Screens the home stack can push.
 enum Route: Hashable {
     case setup
+    /// Choosing which decks a round may draw from.
     case decks
     case names
     case round
+
+    /// Browsing and editing the decks themselves, which is a different job
+    /// from picking which ones are in play.
+    case library
+    case customDeck(UUID)
+    case builtInDeck(String)
 }
 
 /// Owns the navigation stack and the round in progress.

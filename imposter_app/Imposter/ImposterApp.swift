@@ -69,6 +69,8 @@ struct RootView: View {
                         return r
                     }(), flow: flow)
                 }.tint(Theme.signal)
+            case "library":
+                NavigationStack { DeckLibraryView(library: DeckLibrary()) }.tint(Theme.signal)
             case "howto":
                 NavigationStack { HowToPlayView() }.tint(Theme.signal)
             case "names":

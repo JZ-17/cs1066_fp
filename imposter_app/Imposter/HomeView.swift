@@ -6,6 +6,9 @@ struct HomeView: View {
     @State private var settings = GameSettings()
     @State private var flow = GameFlow()
 
+    /// Custom decks. Loads from the cache straight away, then refreshes.
+    @State private var library = DeckLibrary()
+
     var body: some View {
         NavigationStack(path: $flow.path) {
                   ScrollView {
@@ -27,11 +30,14 @@ struct HomeView: View {
                             }
                             .buttonStyle(PressableCard())
 
-                            MenuCard(
-                                icon: "rectangle.stack.fill",
-                                title: "Decks",
-                                subtitle: "Browse, edit, or generate a new one"
-                            )
+                            NavigationLink(value: Route.library) {
+                                MenuCardFace(
+                                    icon: "rectangle.stack.fill",
+                                    title: "Decks",
+                                    subtitle: "Browse, edit, or generate a new one"
+                                )
+                            }
+                            .buttonStyle(PressableCard())
                             NavigationLink {
                                 HowToPlayView()
                             } label: {
@@ -68,6 +74,14 @@ struct HomeView: View {
                     if let round = flow.round {
                         RoundFlowView(round: round, flow: flow)
                     }
+                case .library:
+                    DeckLibraryView(library: library)
+                case .customDeck(let id):
+                    DeckDetailView(library: library, deckID: id)
+                case .builtInDeck(let id):
+                    if let deck = Decks.all.first(where: { $0.id == id }) {
+                        BuiltInDeckView(deck: deck)
+                    }
                 }
             }
         }
@@ -83,6 +97,12 @@ struct HomeView: View {
         .offset(y: appeared ? 0 : 18)
         .task {
             withAnimation(.easeOut(duration: 0.65)) { appeared = true }
+            await library.start()
+            settings.setAvailableDecks(library.all)
+        }
+        // Later refreshes, and anything the player makes or deletes.
+        .onChange(of: library.stored) {
+            settings.setAvailableDecks(library.all)
         }
     }
 

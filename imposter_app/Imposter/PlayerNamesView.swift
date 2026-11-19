@@ -82,6 +82,7 @@ struct PlayerNamesView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
+        .spaceBackButton()
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()

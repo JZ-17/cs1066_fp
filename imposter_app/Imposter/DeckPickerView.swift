@@ -6,7 +6,7 @@ struct DeckPickerView: View {
 
     @Bindable var settings: GameSettings
 
-    private var allSelected: Bool { settings.selectedDecks.count == Decks.all.count }
+    private var allSelected: Bool { settings.selectedDecks.count == settings.availableDecks.count }
 
     var body: some View {
         ScrollView {
@@ -42,7 +42,7 @@ struct DeckPickerView: View {
                 }
                 .padding(.bottom, 4)
 
-                ForEach(Decks.all) { deck in
+                ForEach(settings.availableDecks) { deck in
                     DeckRow(deck: deck, selected: settings.isSelected(deck)) {
                         withAnimation(Theme.bouncy) { settings.toggle(deck) }
                     }
@@ -59,6 +59,7 @@ struct DeckPickerView: View {
         .background { Theme.backdrop }
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
+        .spaceBackButton()
     }
 
     /// Doubles as the empty-state warning, since deselecting everything is

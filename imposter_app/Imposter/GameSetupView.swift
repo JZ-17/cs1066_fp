@@ -177,6 +177,7 @@ struct GameSetupView: View {
         .background { Theme.backdrop }
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
+        .spaceBackButton()
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()

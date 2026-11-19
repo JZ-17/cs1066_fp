@@ -322,3 +322,58 @@ struct AirlockCover: View {
         }
     }
 }
+
+// MARK: - Back button
+
+/// Replaces the system back chevron with something that belongs to the rest
+/// of the app: a lit ring with a glow, rather than a thin blue arrow.
+///
+/// It calls `dismiss()`, so it behaves exactly like the button it replaces and
+/// the swipe-from-edge gesture keeps working.
+struct SpaceBackButton: View {
+
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "chevron.left")
+                .font(.system(size: 15, weight: .black))
+                .foregroundStyle(Theme.signal)
+                .frame(width: 36, height: 36)
+                .background(
+                    Circle().fill(Theme.hull.opacity(0.8))
+                )
+                .overlay(
+                    Circle().strokeBorder(Theme.beacon.opacity(0.55), lineWidth: 1.3)
+                )
+                // A toolbar item clips to its own bounds, so a wide halo comes
+                // out as a square. One tight shadow, with padding around it to
+                // land inside the clip.
+                .shadow(color: Theme.beacon.opacity(0.45), radius: 4)
+                .padding(5)
+                // The glyph alone is a tiny tap target. The circle is the
+                // button as far as the finger is concerned.
+                .contentShape(Circle())
+        }
+        .pressable(scale: 0.88, dims: true)
+        .accessibilityLabel("Back")
+    }
+}
+
+extension View {
+    /// Hides the system back button and puts ours in its place.
+    ///
+    /// Do not use on a screen that sets `navigationBarBackButtonHidden`
+    /// conditionally, such as the round, where going back mid game would be
+    /// wrong. This always hides it.
+    func spaceBackButton() -> some View {
+        navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    SpaceBackButton()
+                }
+            }
+    }
+}

@@ -60,13 +60,33 @@ final class GameSettings {
 
     // MARK: Decks
 
+    /// Every deck on offer: the three built into the app, plus whatever this
+    /// player has made. Custom decks arrive from the network after launch, so
+    /// this starts with the built in ones and grows.
+    private(set) var availableDecks: [Deck] = Decks.all
+
     /// Which decks a round may draw its word from. Everything is on to start.
     /// Stored as ids rather than `Deck` values so the set survives a deck list
     /// that grows later.
     private(set) var selectedDeckIDs: Set<String> = Set(Decks.all.map(\.id))
 
     var selectedDecks: [Deck] {
-        Decks.all.filter { selectedDeckIDs.contains($0.id) }
+        availableDecks.filter { selectedDeckIDs.contains($0.id) }
+    }
+
+    /// Called when the custom decks finish loading, or change.
+    ///
+    /// A deck the player has just made should be in play without them having
+    /// to go and tick it, so anything new arrives selected. Anything that has
+    /// gone is dropped from the selection, otherwise deleting a deck would
+    /// leave a dead id in the set forever.
+    func setAvailableDecks(_ decks: [Deck]) {
+        let known = Set(availableDecks.map(\.id))
+        let arriving = decks.map(\.id).filter { !known.contains($0) }
+
+        availableDecks = decks
+        selectedDeckIDs.formUnion(arriving)
+        selectedDeckIDs.formIntersection(Set(decks.map(\.id)))
     }
 
     /// Deselecting every deck is allowed, since there is a Deselect All
@@ -76,9 +96,9 @@ final class GameSettings {
     var deckSummary: String {
         let chosen = selectedDecks
         if chosen.isEmpty { return "None selected" }
-        if chosen.count == Decks.all.count { return "All \(chosen.count) decks" }
+        if chosen.count == availableDecks.count { return "All \(chosen.count) decks" }
         if chosen.count == 1 { return chosen[0].name }
-        return "\(chosen.count) of \(Decks.all.count) decks"
+        return "\(chosen.count) of \(availableDecks.count) decks"
     }
 
     var selectedCardCount: Int {
@@ -95,14 +115,14 @@ final class GameSettings {
         }
     }
 
-    func selectAllDecks() { selectedDeckIDs = Set(Decks.all.map(\.id)) }
+    func selectAllDecks() { selectedDeckIDs = Set(availableDecks.map(\.id)) }
 
     func deselectAllDecks() { selectedDeckIDs = [] }
 
     /// The deck a round will use. Falls back to the full list rather than
     /// trapping, so a round can never crash on an empty selection.
     func randomDeck() -> Deck {
-        selectedDecks.randomElement() ?? Decks.all[0]
+        selectedDecks.randomElement() ?? availableDecks.first ?? Decks.all[0]
     }
 
     // MARK: Mutations
